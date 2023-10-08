@@ -1,0 +1,27 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2023-10-12T07:49:27+02:00",
+  "id": "volcamp23",
+  "duration": 194,
+  "title": "La sécurité, par où commencer ? Install party 🎉",
+  "authors": "David Aparicio",
+  "summary": "La sécurité, par où commencer ? Install party",
+  "source": "volcamp2023.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "devsecops",
+    "security"
+  ],
+  "tags": [
+    "volcamp",
+    "volcampio"
+  ],
+  "feedback": "https://github.com/davidaparicio/devsecops-workshop/issues",
+  "url": "volcamp23"
+}

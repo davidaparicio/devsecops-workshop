@@ -2,7 +2,7 @@
 
 ## Lien de l'atelier
 
-https://davidaparicio.gitlab.io/fr/codelabs/devoxxfr23/
+https://davidaparicio.gitlab.io/fr/codelabs/volcamp23/
 
 ## Lien vers le projet Go
 
@@ -10,7 +10,7 @@ https://github.com/davidaparicio/namecheck
 
 ## Lien vers le synopsis de la demo 42Crunch
 
-https://github.com/davidaparicio/devsecops-workshop-devoxxfr23/blob/main/petstore/README.md
+https://github.com/davidaparicio/devsecops-workshop/blob/main/petstore/README.md
 
 ## Description
 
