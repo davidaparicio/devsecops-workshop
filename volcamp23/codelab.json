@@ -3,13 +3,13 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2023-05-17T14:55:35+02:00",
-  "id": "devoxxfr23",
-  "duration": 194,
+  "updated": "2023-10-12T08:32:42+02:00",
+  "id": "volcamp23",
+  "duration": 196,
   "title": "La sécurité, par où commencer ? Install party 🎉",
   "authors": "David Aparicio",
   "summary": "La sécurité, par où commencer ? Install party",
-  "source": "devoxxfr2023.md",
+  "source": "volcamp2023.md",
   "theme": "",
   "status": [
     "published"
@@ -19,9 +19,9 @@
     "security"
   ],
   "tags": [
-    "devoxxfr",
-    "gbu-7756"
+    "volcamp",
+    "volcampio"
   ],
-  "feedback": "https://github.com/davidaparicio/devsecops-workshop-devoxxfr23/issues",
-  "url": "devoxxfr23"
+  "feedback": "https://github.com/davidaparicio/devsecops-workshop/issues",
+  "url": "volcamp23"
 }

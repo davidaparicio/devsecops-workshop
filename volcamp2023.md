@@ -13,9 +13,9 @@ Duration: 3
 
 Votre entreprise a connu une croissance inattendue, des carnets de commandes qui débordent, un tas d'idées nouvelles de projets, et avec la crise actuelle outre-atlantique touchant les GAFAM, la conjecture n'est pas favorable à recruter massivement.
 
-De plus, votre dernier produit de l'équipe a connu un succès fou, DevoxxGPT. Tous les médias en parlent, les serveurs tiennent tant bien que mal à la charge, et après quelques analyses de logs, vous remarquez que certains petits malins réussissent à bénéficier de l'offre commerciale, sans débourser le moindre sou.
+De plus, votre dernier produit de l'équipe a connu un succès fou, VolcampGPT. Tous les médias en parlent, les serveurs tiennent tant bien que mal à la charge, et après quelques analyses de logs, vous remarquez que certains petits malins réussissent à bénéficier de l'offre commerciale, sans débourser le moindre sou.
 
-![DevoxxGPT logo](assets/volcampgpt.png)
+![VolcampGPT logo](assets/volcampgpt.png)
 
 Avec l'euphorie des développeurs, et l'engouement des utilisateurs, vous avez mis en production de nouvelles fonctionnalités dans la précipitation, sans revue préalable, ni la réalisation de test d'intrusion.
 
@@ -212,7 +212,7 @@ Duration: 2
 
 ### Illustration avec GitHub Code Scanning
 
-En préparant cet atelier pour la conférence Volcamp2023, mon collègue, Christopher Aparicio, a continué à contribuer pour DevoxxGPT. En activant sur tous mes repositories Github, Dependabot & cie, à travers ce [menu](https://github.com/settings/security_analysis), automatiquement, Dependabot me remonte les failles de sécurité de notre code. La prevue en images (ou plutôt en ligne de commande, durant les fameux git pull/push) :
+En préparant cet atelier pour la conférence Volcamp2023, mon collègue, Christopher Aparicio, a continué à contribuer pour VolcampGPT. En activant sur tous mes repositories Github, Dependabot & cie, à travers ce [menu](https://github.com/settings/security_analysis), automatiquement, Dependabot me remonte les failles de sécurité de notre code. La prevue en images (ou plutôt en ligne de commande, durant les fameux git pull/push) :
 
 git pull (Dependabot a ouvert automatique 3 PR pour fixer les failles, maintenant à moi de les tester)
 ``` Bash
@@ -439,7 +439,7 @@ Duration: 10
 
 ![NewsBlur - Logo](assets/newsblur.jpg)
 
-En effet, vous vous rappelez des conséquences de l'attaque contre fournisseur de données pour DevoxxGPT: [NewsBlur](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/). Pour éviter la même mésaventure, vous prenez les devant. Tester votre déploiement, en vérifiant les Best Practices en Sécurité.
+En effet, vous vous rappelez des conséquences de l'attaque contre fournisseur de données pour VolcampGPT: [NewsBlur](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/). Pour éviter la même mésaventure, vous prenez les devant. Tester votre déploiement, en vérifiant les Best Practices en Sécurité.
 
 __Objectifs de cette étape__:
 * Codez deux petites fonctions de test qui valide (SUCCÈS) si elle n'arrive à se connecter à votre BDD sans identifiants, et ceux par défaut comme `admin:admin`
@@ -894,7 +894,7 @@ Duration: 15
 
 ![NewsBlur - Logo](assets/newsblur.jpg)
 
-Vous vous souvenez à nouveau des conséquences de l'attaque contre fournisseur de données pour DevoxxGPT: [NewsBlur](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/). Pour éviter une mésaventure, vous prenez les devant: Tester de manière fréquente vos procédures de snapshot backup/restore.
+Vous vous souvenez à nouveau des conséquences de l'attaque contre fournisseur de données pour VolcampGPT: [NewsBlur](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/). Pour éviter une mésaventure, vous prenez les devant: Tester de manière fréquente vos procédures de snapshot backup/restore.
 
 __Objectifs de cette étape__:
 * Lister ce qui est indispensable pour votre sauvegarde (état mais aussi fichiers de configuration/secrets chiffrés)
@@ -951,12 +951,22 @@ Pour ceux qui n'ont pas pu participer au workshop du DevoxxFR2023, ["Le petit ch
 N'hésitez pas à nous contacter pour en savoir plus sur ce domaine, et à nous poser des questions ;-)
 
 <!-- ------------------------ -->
+## SecureCodeBox
+Duration: 2
+
+Pour éviter de tout installer à la main sur son cluster Kubernetes de PROD, l'[OWASP, Open Web Application Security Project](https://owasp.org/) nous propose un super-outil [secureCodeBox](https://www.securecodebox.io/) depuis [2019](https://github.com/secureCodeBox/secureCodeBox/releases/tag/v1.0.0), regroupant plusieurs programmes ainsi leur chart Helm (installation/configuration).
+
+![secureCodeBox architecture](assets/securecodebox.jpg)
+
+[SecureCodeBox](https://owasp.org/www-project-securecodebox/) se définit comme une solution open source automatisée, évolutive et scalable qui intègre plusieurs scanners de sécurité avec une interface simple et légère - pour des tests de sécurité continus et automatisés. Voici la [documentation d'installation de secureCodeBox](https://www.securecodebox.io/docs/getting-started/installation/) et de quoi [commencer son premier scan (NMap)](https://www.securecodebox.io/docs/getting-started/first-scans).
+
+<!-- ------------------------ -->
 ## Félicitations
 Duration: 2
 
 ![Félicitations de la part de toute l'équipe](assets/volcamp_team.jpg)
 
-Votre CEO ainsi que votre CTO vous félicient pour ces actions préventives et actives pour renforcer les produits de l'entreprise, et surtout votre produit phare: **DevoxxGPT**. Vous pouvez être fier.e pour ces exploits menés avec brio !
+Votre CEO ainsi que votre CTO vous félicient pour ces actions préventives et actives pour renforcer les produits de l'entreprise, et surtout votre produit phare: **VolcampGPT**. Vous pouvez être fier.e pour ces exploits menés avec brio !
 
 ![CommitStrip - ChatGPT](assets/chatgpt.jpg)
 
@@ -1004,15 +1014,15 @@ Nous vous souhaitons un excellent Volcamp 2023 !! ;-D
 
 ![Lien OpenFeedBack](assets/feedback.png)
 
-S'il vous plaît, laissez-nous votre note et vos commentaires sur [OpenFeedBack](https://openfeedback.io/2M9FzZ6xSI2POKX1TrXM/2023-04-13/iWUCq9jRftwiLuxrqhdl)
+S'il vous plaît, laissez-nous votre note et vos commentaires sur [OpenFeedBack](https://openfeedback.io/JVBw5TL2fcGc8Mf3QNCE/2023-10-12/tQZH2XDdZHAobTGOPBdM)
 
 ## E1 - Utip
 Duration: 5
 
 ### Utip et Mongopay
-![DevoxxGPT scale](assets/volcampgpt_curve.jpg)
+![VolcampGPT scale](assets/volcampgpt_curve.jpg)
 
-DevoxxGPT connait une croissance incroyable, comme l'illustre le graphique: de nombreux articles en parlent, des directs sur les plateaux télévisés, et même l'[Italie](https://www.bbc.com/news/technology-65139406) menace de vous bloquer, pour des raisons de vie privée.
+VolcampGPT connait une croissance incroyable, comme l'illustre le graphique: de nombreux articles en parlent, des directs sur les plateaux télévisés, et même l'[Italie](https://www.bbc.com/news/technology-65139406) menace de vous bloquer, pour des raisons de vie privée.
 
 
 Mais votre CEO découvre cette [nouvelle](https://www.numerama.com/tech/1325518-utip-ferme-pourquoi-la-plateforme-francaise-de-financement-disparait-elle-si-abruptement.html) avec effroi : "uTip, la plateforme de financement participatif française (Cocorico) concurrente de Tipeee, vient fermer. L’entreprise a été placée en liquidation judiciaire le 23 mars 2023, et son activité s'est arrêtée le 4 avril 2023" ([Source](https://www.numerama.com/tech/1325518-utip-ferme-pourquoi-la-plateforme-francaise-de-financement-disparait-elle-si-abruptement.html)). uTip ferme à cause d'un intermédiaire financier, Mangopay, qui a décidé de mettre fin à leur contrat. Vous avez pour objectif, de le rasurer face à cette triste annonce, ébranlant toute la [French Tech](https://lafrenchtech.com/fr/).
@@ -1181,5 +1191,30 @@ __Objectifs de cette étape__:
 * Utiliser Kyverno pour empêcher de nouveaux déploiements avec l'ancien registry
 * Et/Ou analyser le [billet de blog de Chainguard](https://www.chainguard.dev/unchained/using-chainguard-enforce-to-prepare-for-the-kubernetes-registry-deprecation) et le tester sur un environnement de test/une sandbox
 * Facultatif: Le tester sur un environnement plus conséquent/important
+
+<!-- ------------------------ -->
+## Quelques liens
+Duration: 0
+
+Pour nos futurs ateliers
+
+* Pip Python Introducing ['Trusted Publishers'](https://blog.pypi.org/posts/2023-04-20-introducing-trusted-publishers/)
+* Introducing npm package [provenance](https://github.blog/2023-04-19-introducing-npm-package-provenance/)
+* [Wolfi](https://github.com/wolfi-dev): [A Secure-by-Default Distro](https://youtu.be/_GcmmjzuVRw?si=9rqAd7gGma_tnTBQ) for [Curing Container CVE Chaos](https://www.chainguard.dev/unchained/how-to-use-dockerfiles-with-wolfi-base-images)
+* [trufflehog](https://github.com/trufflesecurity/trufflehog) + [How to Rotate: Key Rotation Tutorials](https://github.com/trufflesecurity/how-to-rotate)
+* Rust, [Ferrocene](https://ferrous-systems.com/blog/ferrocene-open-source/)
+* [Falco K8s](https://yodamad.hashnode.dev/keep-an-eye-on-your-k8s-cluster-with-falco)
+* [Cosign / Rekor](https://blog.stephane-robert.info/post/devops-cosign-rekor-private/#d%C3%A9ploiement-du-service-rekor)
+* [Scratch + SSL](https://twitter.com/jcsirot/status/1664374040067227648), [rootcerts](https://github.com/gwatts/rootcerts)
+* [Compliance One-Shoot](https://twitter.com/allema_s/status/1677633477494153222?t=OFeApxXrlkPkgb6DD8cxBQ&s=19)
+* [CVE](https://twitter.com/xinity/status/1650831291095437314): examples of [CVE](https://twitter.com/xinity/status/1649838849365770242)s that has been discovered several years after the "bug" was introduced ?
+* [Security-Guard](https://knative.dev/docs/serving/app-security/security-guard-about/) provides visibility into the security status of deployed Knative Services
+* Chainguard Improves Security for Its [Container Image Registry](https://thenewstack.io/chainguard-improves-security-for-its-container-image-registry/)
+* [Slim](https://github.com/slimtoolkit/slim) (toolkit): Don't change anything in your container image and minify it by up to 30x 
+* [Proxyjacking has Entered the Chat](https://sysdig.com/blog/proxyjacking-attackers-log4j-exploited/)
+* Provisioning and Consuming Multi-Cloud Infrastructure with [Crossplane and Dapr](https://blog.crossplane.io/crossplane-and-dapr/)
+* [Scrubing Github History of Sensitive Data](https://www.youtube.com/watch?v=hseEfxCHzYw)
+* [Anais Urlichs, #100 Days Of Kubernetes](https://www.youtube.com/watch?v=W6J6UipVNGA&list=PLWnens-FYbIpUpmiiNYfkqTZQUYppGMFV) Kubernetes Security through GitOps [Best Practices: ArgoCD and Starboard]((https://www.youtube.com/watch?v=YvMY8to9aHI))
+* [DDOS detection](https://vincent.bernat.ch/fr/blog/2023-akvorado-ddos-flowspec)
 
 <!-- ------------------------ -->
