@@ -1,9 +1,12 @@
 # Workshop Devoxx Petstore API
 
-The Petstore API implements the petstore.json specification with some conformance and security issues. You will be able to find them and to protect the API with 42Crunch tools (Audit/Scan/Firewall). There are more documentations about the Petstore API in the directory 'ressources'
+You work in a software development team within a company that manages an online pet sale service called "Petstore." The Product Manager of the company has identified a need to improve the current system and wants to develop an API to make the service more accessible to external partners. Security for this API is a major concern, and you have decided to use the 42Crunch tools to ensure its security throughout the development process.
 
+The Petstore API implements the petstore.json specification with some conformance and security issues. You will be able to find them and to protect the API with 42Crunch tools (Audit/Scan/Firewall). There are more documentations about the Petstore API in the directory 'ressources' with an EDR diagramm and the Postman collection to execute some request.
 
-## Prerequisites
+## 1. Prerequisites
+
+Before starting on the project, you need to have the following prerequisites installed on your machine : 
 
 - Golang 1.18 or higher (https://go.dev/doc/install)
 - An IDE
@@ -11,12 +14,12 @@ The Petstore API implements the petstore.json specification with some conformanc
     - IntelliJ : (https://www.jetbrains.com/help/idea/installation-guide.html)
 - Docker (https://docs.docker.com/engine/install/)
 - Docker-Compose
-- Postman [Recommended to test the API]
+- Curl/Postman [Recommended to test the API]
 - Oapi-codegen (https://github.com/deepmap/oapi-codegen) [Required to run 'make build' in ./api else run 'make build-go']
 
-## Building and running the API
+## 2. Building and running the API
 
-To build and run the API execute the following commands:
+With all the prerequisites installed, you are able now to run the api: 
 
 ```
 cd ./api
@@ -39,7 +42,7 @@ ____________________________________O/_______
 
 ```
 
-Update the hosts file to have the following lines:
+[Optionnal] Update the host file to simplify requests to the API:
 
 ```
 127.0.0.1    petstore-secured
@@ -49,11 +52,9 @@ Update the hosts file to have the following lines:
 The API is up and is listening on the port 4010. To test that everything is fine you can execute the command and get the response below:
 
 ```
-~/devsecops-workshop-devoxxfr23/petstore/api$ curl 'http://petstore:4010/version'
+~/dev/petstore/api$ curl 'http://petstore:4010/version'
 {"commitId":"3271bd2a72002b6a730d6da541c5da355390c4ff","version":"v1.0.0"}
-
 ```
-
 
 ## Vizualize the specification (OpenAPI)
 
@@ -84,84 +85,14 @@ docker run --rm -p 8080:8080 -e SWAGGER_JSON=/petstore/petstore.json -v $(pwd):/
 
 To be able to execute 42Crunch tools you must have an account in the platform. You can register here : (https://platform.42crunch.com/).
 
-## Static Analysis (Audit)
+## Workshop 1 : Static Analysis [Audit] 
 
-There are two ways to run the Audit:
+Head over to the ./audit directory to complete this section of the workshop.
 
-- Using the 42Crunch UI Platform
-    - Go to the https://platform.42crunch.com/ page and login
-    - Create a collection in the API Collection page
-    - Import an API inside the collection
-    - Read the Audit report in the 'Security Audit Report' tab
-    - Update the specification and re-run the audit in the 'Security editor tag'
-    - More documentation : https://42crunch.com/tutorial-api-security-audit/
-- Using the 42Crunch IDE Extension
-    - Open your IDE VSCode/IntelliJ
-    - Install the 42Crunch extension
-        - VSCode (https://marketplace.visualstudio.com/items?itemName=42Crunch.vscode-openapi)
-        - IntelliJ (https://plugins.jetbrains.com/plugin/14837-openapi-swagger-editor)
-    - Create an IDE token in the page https://platform.42crunch.com/
-    - Setup the extension in the IDE
-        - VSCode : Ctrl + Shift + P : Update platform credentials
-    - Open an OpenAPI Specification file and click on the top right 42Crunch logo
+## Workshop 2 : Dynamic Analysis [Scan]
 
-## Dynamic Analysis (Scan)
+Navigate to the ./scan directory in order to work on this segment of the workshop.
 
-There are two ways to run the scan:
-
-- Using the 42Crunch UI Platform (Old scan engine)
-    - Go to the API page created in the previous section
-    - Generate a configuration in the 'On Premises Scan Report' tabs
-        - Setup the authentication to reflect API credentials (Hardcoded sessions/tokens are defined in the ./api/api.go file at line 67-84)
-    - Execute the following command with the token set
-    - Read the Scan report in the Scan report page
-    ```
-    docker pull 42crunch/scand-agent:latest
-    docker run -e SCAN_TOKEN=<token> 42crunch/scand-agent:latest
-    ```
-
-- Using the 42Crunch IDE Extension (New scan engine)
-   - Open VSCode/IntelliJ with the 42Crunch extension
-   - Hover an operation and click on 'Scan', it opens a card in a new tab
-   - Update the body and the authentication (Hardcoded sessions/tokens are defined in the ./api/api.go file at line 67-84)
-   - Click on 'Scan'
-
-
-## Protection the API (Firewall)
+## Workshop 3 : Protection [FW]
 
 To protect the API, follow the readme file present in the 'fw' directory
-
-
-## API Issues
-
-The API has some implementation issues describes below. The authorization issues can be enable/disable by using the flag --insecure
-
-```
-
-./api # Secure mode
-./api --insecure # Insecure mode
-
-```
-
-The Petstore API is a testing API for the scan which has the following issues in insecure mode (--insecure) :
-
-### Authorization
-- CreateUser does not verify that the user is an admin
-- CreatePetstore does not verify that the user is an admin
-- TransferPet does not verify that the user calling the method is the owner of the Pet
-- ReadPet does not verify that the user calling the method is the owner of the Pet
-
-### Performance
-- The response time of CreatePetstore increase linearly after a limit (100 by default)
-- The CreatePet returns a 500 http status code after a limit (100 by default)
-
-### OpenAPI
-
-- In the request of the operation 'CreateUser' the property 'isAdmin' is not required (default "false")
-- In the response of the operation 'Version' the property 'version' is a string
-
-To detect more OpenAPI issues it is easier to use the petstoreInvalid.json (in './scan/petstoreInvalid.json') file which change the contract to not follow the implementation. The issues present in the file which are not respected by the API are as follows :
-- Username max length is 99 instead of 100
-- Petname max length is  9 instead of 10
-- Delete Pet response 200 require a required header
-- Delete Pet response 400 require a required header

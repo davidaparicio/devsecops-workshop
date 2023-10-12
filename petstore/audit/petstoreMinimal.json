@@ -1,0 +1,241 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Swagger Petstore",
+        "description": "A sample API that uses a petstore as an example to demonstrate features in the OpenAPI 3.0 specification",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "Swagger API Team",
+            "email": "apiteam@swagger.io",
+            "url": "http://swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:4010"
+        }
+    ],
+    "paths": {
+        "/petstores": {
+            "get": {
+                "tags": [
+                    "petstore"
+                ],
+                "description": "Returns all petstores from the system that the user has access to",
+                "operationId": "FindPetstores",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "name to filter by",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "$ref": "#/components/schemas/PetstoreName"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "maximum number of results to return",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "minimum": 0,
+                            "maximum": 100,
+                            "default": 10
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "petstore response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Petstores"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/default"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "petstore"
+                ],
+                "description": "Creates a new petstore",
+                "operationId": "CreatePetstore",
+                "requestBody": {
+                    "description": "Pestore to create",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NewPetstore"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "pet response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Petstore"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/default"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "ApiKeyUser": {
+                "type": "apiKey",
+                "name": "apikey",
+                "in": "header"
+            },
+            "ApiKeyAdmin": {
+                "type": "apiKey",
+                "name": "apikey",
+                "in": "header"
+            },
+            "CookieUser": {
+                "type": "apiKey",
+                "name": "session",
+                "in": "cookie"
+            },
+            "CookieAdmin": {
+                "type": "apiKey",
+                "name": "session",
+                "in": "cookie"
+            }
+        },
+        "responses": {
+            "400": {
+                "description": "bad input",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "message"
+                            ],
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "pattern": "^[\\w\\- ]{0,100}$"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "default": {
+                "description": "unexpected error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "schemas": {
+            "Petstores": {
+                "type": "object",
+                "required": [
+                    "items"
+                ],
+                "properties": {
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Petstore"
+                        },
+                        "minLength": 0,
+                        "maxLength": 100
+                    }
+                }
+            },
+            "PetstoreName": {
+                "type": "string"
+            },
+            "Id": {
+                "type": "string"
+            },
+            "Petstore": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/NewPetstore"
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "id"
+                        ],
+                        "properties": {
+                            "id": {
+                                "$ref": "#/components/schemas/Id"
+                            }
+                        }
+                    }
+                ]
+            },
+            "NewPetstore": {
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "$ref": "#/components/schemas/PetstoreName"
+                    }
+                }
+            },
+            "Error": {
+                "type": "object",
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 0,
+                        "maximum": 500,
+                        "example": 10
+                    },
+                    "message": {
+                        "type": "string",
+                        "pattern": "^[\\w\\- ]{0,100}$"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -19,6 +19,9 @@ type ServerInterface interface {
 	// Delete an apikey
 	// (DELETE /apikey/{id})
 	DeleteApikey(ctx echo.Context, id Id) error
+	// Endpoint which return status code in the body
+	// (POST /badError)
+	BadError(ctx echo.Context) error
 	// Dump all data in the database
 	// (GET /dump)
 	Dump(ctx echo.Context) error
@@ -78,9 +81,9 @@ type ServerInterfaceWrapper struct {
 func (w *ServerInterfaceWrapper) CreateApikey(ctx echo.Context) error {
 	var err error
 
-	ctx.Set(CookieScopes, []string{""})
+	ctx.Set(CookieAdminScopes, []string{""})
 
-	ctx.Set(ApiKeyScopes, []string{""})
+	ctx.Set(CookieUserScopes, []string{""})
 
 	// Invoke the callback with all the unmarshalled arguments
 	err = w.Handler.CreateApikey(ctx)
@@ -98,10 +101,21 @@ func (w *ServerInterfaceWrapper) DeleteApikey(ctx echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter id: %s", err))
 	}
 
-	ctx.Set(CookieScopes, []string{""})
+	ctx.Set(CookieAdminScopes, []string{""})
+
+	ctx.Set(CookieUserScopes, []string{""})
 
 	// Invoke the callback with all the unmarshalled arguments
 	err = w.Handler.DeleteApikey(ctx, id)
+	return err
+}
+
+// BadError converts echo context to params.
+func (w *ServerInterfaceWrapper) BadError(ctx echo.Context) error {
+	var err error
+
+	// Invoke the callback with all the unmarshalled arguments
+	err = w.Handler.BadError(ctx)
 	return err
 }
 
@@ -136,9 +150,13 @@ func (w *ServerInterfaceWrapper) UserLoginUrlencoded(ctx echo.Context) error {
 func (w *ServerInterfaceWrapper) CreatePet(ctx echo.Context) error {
 	var err error
 
-	ctx.Set(CookieScopes, []string{""})
+	ctx.Set(CookieAdminScopes, []string{""})
 
-	ctx.Set(ApiKeyScopes, []string{""})
+	ctx.Set(ApiKeyAdminScopes, []string{""})
+
+	ctx.Set(CookieUserScopes, []string{""})
+
+	ctx.Set(ApiKeyUserScopes, []string{""})
 
 	// Invoke the callback with all the unmarshalled arguments
 	err = w.Handler.CreatePet(ctx)
@@ -156,9 +174,13 @@ func (w *ServerInterfaceWrapper) DeletePet(ctx echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter id: %s", err))
 	}
 
-	ctx.Set(CookieScopes, []string{""})
+	ctx.Set(CookieAdminScopes, []string{""})
 
-	ctx.Set(ApiKeyScopes, []string{""})
+	ctx.Set(ApiKeyAdminScopes, []string{""})
+
+	ctx.Set(CookieUserScopes, []string{""})
+
+	ctx.Set(ApiKeyUserScopes, []string{""})
 
 	// Invoke the callback with all the unmarshalled arguments
 	err = w.Handler.DeletePet(ctx, id)
@@ -176,9 +198,13 @@ func (w *ServerInterfaceWrapper) ReadPet(ctx echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter id: %s", err))
 	}
 
-	ctx.Set(CookieScopes, []string{""})
+	ctx.Set(CookieAdminScopes, []string{""})
 
-	ctx.Set(ApiKeyScopes, []string{""})
+	ctx.Set(ApiKeyAdminScopes, []string{""})
+
+	ctx.Set(CookieUserScopes, []string{""})
+
+	ctx.Set(ApiKeyUserScopes, []string{""})
 
 	// Invoke the callback with all the unmarshalled arguments
 	err = w.Handler.ReadPet(ctx, id)
@@ -196,9 +222,13 @@ func (w *ServerInterfaceWrapper) TransferPet(ctx echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter id: %s", err))
 	}
 
-	ctx.Set(CookieScopes, []string{""})
+	ctx.Set(CookieAdminScopes, []string{""})
 
-	ctx.Set(ApiKeyScopes, []string{""})
+	ctx.Set(ApiKeyAdminScopes, []string{""})
+
+	ctx.Set(CookieUserScopes, []string{""})
+
+	ctx.Set(ApiKeyUserScopes, []string{""})
 
 	// Invoke the callback with all the unmarshalled arguments
 	err = w.Handler.TransferPet(ctx, id)
@@ -234,9 +264,9 @@ func (w *ServerInterfaceWrapper) FindPetstores(ctx echo.Context) error {
 func (w *ServerInterfaceWrapper) CreatePetstore(ctx echo.Context) error {
 	var err error
 
-	ctx.Set(CookieScopes, []string{""})
+	ctx.Set(ApiKeyAdminScopes, []string{""})
 
-	ctx.Set(ApiKeyScopes, []string{""})
+	ctx.Set(CookieAdminScopes, []string{""})
 
 	// Invoke the callback with all the unmarshalled arguments
 	err = w.Handler.CreatePetstore(ctx)
@@ -254,9 +284,9 @@ func (w *ServerInterfaceWrapper) DeletePetstore(ctx echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter id: %s", err))
 	}
 
-	ctx.Set(CookieScopes, []string{""})
+	ctx.Set(ApiKeyAdminScopes, []string{""})
 
-	ctx.Set(ApiKeyScopes, []string{""})
+	ctx.Set(CookieAdminScopes, []string{""})
 
 	// Invoke the callback with all the unmarshalled arguments
 	err = w.Handler.DeletePetstore(ctx, id)
@@ -290,9 +320,13 @@ func (w *ServerInterfaceWrapper) ListPets(ctx echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter id: %s", err))
 	}
 
-	ctx.Set(CookieScopes, []string{""})
+	ctx.Set(CookieAdminScopes, []string{""})
 
-	ctx.Set(ApiKeyScopes, []string{""})
+	ctx.Set(ApiKeyAdminScopes, []string{""})
+
+	ctx.Set(CookieUserScopes, []string{""})
+
+	ctx.Set(ApiKeyUserScopes, []string{""})
 
 	// Invoke the callback with all the unmarshalled arguments
 	err = w.Handler.ListPets(ctx, id)
@@ -312,9 +346,9 @@ func (w *ServerInterfaceWrapper) Redirect(ctx echo.Context) error {
 func (w *ServerInterfaceWrapper) CreateUser(ctx echo.Context) error {
 	var err error
 
-	ctx.Set(CookieScopes, []string{""})
+	ctx.Set(CookieAdminScopes, []string{""})
 
-	ctx.Set(ApiKeyScopes, []string{""})
+	ctx.Set(ApiKeyAdminScopes, []string{""})
 
 	// Invoke the callback with all the unmarshalled arguments
 	err = w.Handler.CreateUser(ctx)
@@ -332,9 +366,9 @@ func (w *ServerInterfaceWrapper) DeleteUser(ctx echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter username: %s", err))
 	}
 
-	ctx.Set(CookieScopes, []string{""})
+	ctx.Set(CookieAdminScopes, []string{""})
 
-	ctx.Set(ApiKeyScopes, []string{""})
+	ctx.Set(ApiKeyAdminScopes, []string{""})
 
 	// Invoke the callback with all the unmarshalled arguments
 	err = w.Handler.DeleteUser(ctx, username)
@@ -380,6 +414,7 @@ func RegisterHandlersWithBaseURL(router EchoRouter, si ServerInterface, baseURL 
 
 	router.POST(baseURL+"/apikey", wrapper.CreateApikey)
 	router.DELETE(baseURL+"/apikey/:id", wrapper.DeleteApikey)
+	router.POST(baseURL+"/badError", wrapper.BadError)
 	router.GET(baseURL+"/dump", wrapper.Dump)
 	router.POST(baseURL+"/login", wrapper.UserLogin)
 	router.POST(baseURL+"/login/urlencoded", wrapper.UserLoginUrlencoded)
