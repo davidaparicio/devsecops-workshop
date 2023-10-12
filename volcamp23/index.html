@@ -839,6 +839,14 @@ spec:
 
       </google-codelab-step>
     
+      <google-codelab-step label="SecureCodeBox" duration="2">
+        <p>Pour éviter de tout installer à la main sur son cluster Kubernetes de PROD, l&#39;<a href="https://owasp.org/" target="_blank">OWASP, Open Web Application Security Project</a> nous propose un super-outil <a href="https://www.securecodebox.io/" target="_blank">secureCodeBox</a> depuis <a href="https://github.com/secureCodeBox/secureCodeBox/releases/tag/v1.0.0" target="_blank">2019</a>, regroupant plusieurs programmes ainsi leur chart Helm (installation/configuration).</p>
+<p class="image-container"><img alt="secureCodeBox architecture" src="img/c77c43c647d639b0.jpg"></p>
+<p><a href="https://owasp.org/www-project-securecodebox/" target="_blank">SecureCodeBox</a> se définit comme une solution open source automatisée, évolutive et scalable qui intègre plusieurs scanners de sécurité avec une interface simple et légère - pour des tests de sécurité continus et automatisés. Voici la <a href="https://www.securecodebox.io/docs/getting-started/installation/" target="_blank">documentation d&#39;installation de secureCodeBox</a> et de quoi <a href="https://www.securecodebox.io/docs/getting-started/first-scans" target="_blank">commencer son premier scan (NMap)</a>.</p>
+
+
+      </google-codelab-step>
+    
       <google-codelab-step label="Félicitations" duration="2">
         <p class="image-container"><img alt="Félicitations de la part de toute l&amp;rsquo;équipe" src="img/c7c41fe0b31e33c4.jpg"></p>
 <p>Votre CEO ainsi que votre CTO vous félicient pour ces actions préventives et actives pour renforcer les produits de l&#39;entreprise, et surtout votre produit phare: <strong>VolcampGPT</strong>. Vous pouvez être fier.e pour ces exploits menés avec brio !</p>
@@ -1037,6 +1045,32 @@ spec:
 <li>Utiliser Kyverno pour empêcher de nouveaux déploiements avec l&#39;ancien registry</li>
 <li>Et/Ou analyser le <a href="https://www.chainguard.dev/unchained/using-chainguard-enforce-to-prepare-for-the-kubernetes-registry-deprecation" target="_blank">billet de blog de Chainguard</a> et le tester sur un environnement de test/une sandbox</li>
 <li>Facultatif: Le tester sur un environnement plus conséquent/important</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Quelques liens" duration="0">
+        <p>Pour nos futurs ateliers</p>
+<ul>
+<li>Pip Python Introducing <a href="https://blog.pypi.org/posts/2023-04-20-introducing-trusted-publishers/" target="_blank">‘Trusted Publishers&#39;</a></li>
+<li>Introducing npm package <a href="https://github.blog/2023-04-19-introducing-npm-package-provenance/" target="_blank">provenance</a></li>
+<li><a href="https://github.com/wolfi-dev" target="_blank">Wolfi</a>: <a href="https://youtu.be/_GcmmjzuVRw?si=9rqAd7gGma_tnTBQ" target="_blank">A Secure-by-Default Distro</a> for <a href="https://www.chainguard.dev/unchained/how-to-use-dockerfiles-with-wolfi-base-images" target="_blank">Curing Container CVE Chaos</a></li>
+<li><a href="https://github.com/trufflesecurity/trufflehog" target="_blank">trufflehog</a> + <a href="https://github.com/trufflesecurity/how-to-rotate" target="_blank">How to Rotate: Key Rotation Tutorials</a></li>
+<li>Rust, <a href="https://ferrous-systems.com/blog/ferrocene-open-source/" target="_blank">Ferrocene</a></li>
+<li><a href="https://yodamad.hashnode.dev/keep-an-eye-on-your-k8s-cluster-with-falco" target="_blank">Falco K8s</a></li>
+<li><a href="https://blog.stephane-robert.info/post/devops-cosign-rekor-private/#d%C3%A9ploiement-du-service-rekor" target="_blank">Cosign / Rekor</a></li>
+<li><a href="https://twitter.com/jcsirot/status/1664374040067227648" target="_blank">Scratch + SSL</a>, <a href="https://github.com/gwatts/rootcerts" target="_blank">rootcerts</a></li>
+<li><a href="https://twitter.com/allema_s/status/1677633477494153222?t=OFeApxXrlkPkgb6DD8cxBQ&s=19" target="_blank">Compliance One-Shoot</a></li>
+<li><a href="https://twitter.com/xinity/status/1650831291095437314" target="_blank">CVE</a>: examples of <a href="https://twitter.com/xinity/status/1649838849365770242" target="_blank">CVE</a>s that has been discovered several years after the &#34;bug&#34; was introduced ?</li>
+<li><a href="https://knative.dev/docs/serving/app-security/security-guard-about/" target="_blank">Security-Guard</a> provides visibility into the security status of deployed Knative Services</li>
+<li>Chainguard Improves Security for Its <a href="https://thenewstack.io/chainguard-improves-security-for-its-container-image-registry/" target="_blank">Container Image Registry</a></li>
+<li><a href="https://github.com/slimtoolkit/slim" target="_blank">Slim</a> (toolkit): Don&#39;t change anything in your container image and minify it by up to 30x</li>
+<li><a href="https://sysdig.com/blog/proxyjacking-attackers-log4j-exploited/" target="_blank">Proxyjacking has Entered the Chat</a></li>
+<li>Provisioning and Consuming Multi-Cloud Infrastructure with <a href="https://blog.crossplane.io/crossplane-and-dapr/" target="_blank">Crossplane and Dapr</a></li>
+<li><a href="https://www.youtube.com/watch?v=hseEfxCHzYw" target="_blank">Scrubing Github History of Sensitive Data</a></li>
+<li><a href="https://www.youtube.com/watch?v=W6J6UipVNGA&list=PLWnens-FYbIpUpmiiNYfkqTZQUYppGMFV" target="_blank">Anais Urlichs, #100 Days Of Kubernetes</a> Kubernetes Security through GitOps <a href="(https://www.youtube.com/watch?v=YvMY8to9aHI)" target="_blank">Best Practices: ArgoCD and Starboard</a></li>
+<li><a href="https://vincent.bernat.ch/fr/blog/2023-akvorado-ddos-flowspec" target="_blank">DDOS detection</a></li>
 </ul>
 
 
