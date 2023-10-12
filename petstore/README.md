@@ -1,4 +1,4 @@
-# Workshop Devoxx Petstore API
+# Workshop Volcamp Petstore API
 
 You work in a software development team within a company that manages an online pet sale service called "Petstore." The Product Manager of the company has identified a need to improve the current system and wants to develop an API to make the service more accessible to external partners. Security for this API is a major concern, and you have decided to use the 42Crunch tools to ensure its security throughout the development process.
 
@@ -16,6 +16,14 @@ Before starting on the project, you need to have the following prerequisites ins
 - Docker-Compose
 - Curl/Postman [Recommended to test the API]
 - Oapi-codegen (https://github.com/deepmap/oapi-codegen) [Required to run 'make build' in ./api else run 'make build-go']
+
+If you have some issues during the 'go mod tidy' for the 'make build'. You can perform these commands:
+```Go
+go install github.com/deepmap/oapi-codegen/cmd/oapi-codegen@latest
+go get github.com/oapi-codegen/runtime
+go get github.com/labstack/echo/v4@v4.11.1
+go get github.com/labstack/echo/v4/middleware@v4.11.1
+```
 
 ## 2. Building and running the API
 
