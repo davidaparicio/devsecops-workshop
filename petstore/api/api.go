@@ -14,14 +14,15 @@ import (
 const (
 	CookieHeader     = "session"
 	ApiKeyHeader     = "apikey"
-	CookieExpiration = 300 * time.Second
+	CookieExpiration = 3600 * time.Second
 	ApiVersion       = "v1.0.0"
 	ApiCommitId      = "3271bd2a72002b6a730d6da541c5da355390c4ff"
 )
 
 var (
 	DisablePet    = false
-	Insecure      = false
+	Insecure      = true
+	Limit         = false
 	PetstoreLimit = 100 // After this limit the petstore create response time will be degrated
 	PetLimit      = 100 // After this limit the CreatePet will return a 500
 )
@@ -73,10 +74,6 @@ func NewPetStoreAPI() *PetStoreAPI {
 				Username:   "user@42crunch.com",
 				Expiration: time.Now().Add(CookieExpiration),
 			},
-			"5341253c-faf0-44b0-a2e5-75b682083edf": &SessionData{
-				Username:   "user1@42crunch.com",
-				Expiration: time.Now().Add(CookieExpiration),
-			},
 		},
 		APIKeys: map[string]string{
 			"65496ebe-6544-4e77-bb66-20b97f6994bb": "admin@42crunch.com",
@@ -84,16 +81,16 @@ func NewPetStoreAPI() *PetStoreAPI {
 		},
 		petstores: map[string]*Petstore{
 			"2f909877-e4f1-4161-9f73-8d7b81a197f7": &Petstore{
-				Id:   Id("2f909877-e4f1-4161-9f73-8d7b81a197f7"),
 				Name: "petstore",
+				Id:   Id("2f909877-e4f1-4161-9f73-8d7b81a197f7"),
 			},
 		},
 		pets: map[string]*Pet{
 			"2f909877-e4f1-4161-9f73-8d7b81a197f7": &Pet{
-				Id:         Id("2f909877-e4f1-4161-9f73-8d7b81a197f7"),
-				Age:        &age,
+				Age:        age,
 				Name:       PetName("Billy"),
-				PetstoreId: &petstoreId,
+				PetstoreId: petstoreId,
+				Id:         Id("2f909877-e4f1-4161-9f73-8d7b81a197f7"),
 				Owner:      Username("user@42crunch.com"),
 			},
 		},
@@ -317,7 +314,7 @@ func (api *PetStoreAPI) CreateUser(ctx echo.Context) error {
 	}
 
 	_, userAuthenticated, authenticated := api.IsAuthenticatedCookie(ctx)
-	if !Insecure && !authenticated {
+	if !authenticated {
 		return PetstoreUnauthorized(ctx)
 	}
 
@@ -328,7 +325,7 @@ func (api *PetStoreAPI) CreateUser(ctx echo.Context) error {
 	password := string(login.Password)
 	admin := login.IsAdmin
 
-	if !Insecure && !userAuthenticated.IsAdmin {
+	if !userAuthenticated.IsAdmin {
 		return PetstoreUnauthorized(ctx)
 	}
 
@@ -458,19 +455,21 @@ func (api *PetStoreAPI) CreatePet(ctx echo.Context) error {
 		return PetstoreUnauthorized(ctx)
 	}
 
-	if _, ok := api.petstores[string(*newPet.PetstoreId)]; !ok {
+	petstoreId := newPet.PetstoreId
+
+	if _, ok := api.petstores[petstoreId]; !ok {
 		return PetstoreNotFound(ctx)
 	}
 
-	if Insecure && len(api.pets) > PetLimit {
+	if Limit && len(api.pets) > PetLimit {
 		return PetstoreInternal(ctx)
 	}
 
 	pet := &Pet{
-		Id:         Id(uuid.New().String()),
 		Age:        newPet.Age,
 		Name:       newPet.Name,
 		PetstoreId: newPet.PetstoreId,
+		Id:         Id(uuid.New().String()),
 		Owner:      Username(username),
 	}
 
@@ -576,7 +575,7 @@ func (api *PetStoreAPI) TransferPet(ctx echo.Context, id PathId) error {
 		return PetstoreNotFound(ctx)
 	}
 
-	pet.PetstoreId = &transfer.PetstoreId
+	pet.PetstoreId = transfer.PetstoreId
 
 	return ctx.JSON(http.StatusOK, pet)
 }
@@ -622,8 +621,8 @@ func (api *PetStoreAPI) CreatePetstore(ctx echo.Context) error {
 	}
 
 	newPetstore := Petstore{
-		Id:   Id(uuid.New().String()),
 		Name: newPetstoreBody.Name,
+		Id:   Id(uuid.New().String()),
 	}
 
 	api.Mutex.Lock()
@@ -632,7 +631,6 @@ func (api *PetStoreAPI) CreatePetstore(ctx echo.Context) error {
 	// _, _, authenticated := api.IsAuthenticated(ctx)
 	_, user, authenticated := api.IsAuthenticated(ctx)
 	if !authenticated {
-		fmt.Println("Not authentication")
 		return PetstoreUnauthorized(ctx)
 	}
 
@@ -658,7 +656,7 @@ func (api *PetStoreAPI) CreatePetstore(ctx echo.Context) error {
 	api.petstores[string(newPetstore.Id)] = &newPetstore
 	if Insecure {
 		switch {
-		case len(api.petstores) > PetstoreLimit:
+		case Limit && len(api.petstores) > PetstoreLimit:
 			sleep := rand.Intn(15) + len(api.petstores)
 			time.Sleep(time.Millisecond * time.Duration(sleep))
 		default:
@@ -695,7 +693,7 @@ func (api *PetStoreAPI) DeletePetstore(ctx echo.Context, id Id) error {
 	}
 
 	for _, pet := range api.pets {
-		if pet.PetstoreId == &id {
+		if pet.PetstoreId == id {
 			delete(api.pets, string(pet.Id))
 		}
 	}
@@ -747,7 +745,7 @@ func (api *PetStoreAPI) ListPets(ctx echo.Context, id Id) error {
 
 	items := make([]Pet, 0)
 	for _, pet := range api.pets {
-		if *pet.PetstoreId != id {
+		if pet.PetstoreId != id {
 			continue
 		}
 
@@ -832,4 +830,24 @@ func (api *PetStoreAPI) Dump(ctx echo.Context) error {
 	}
 
 	return ctx.JSON(http.StatusOK, dumpData)
+}
+
+// Endpoint which return status code in the body
+// (GET /badError)
+func (api *PetStoreAPI) BadError(ctx echo.Context) error {
+	if pluginHeaderValue := ctx.Request().Header.Get("X-Plugin-TransactionId"); len(pluginHeaderValue) > 0 {
+		fmt.Println("Plugin header transaction id  : ", pluginHeaderValue)
+	}
+
+	var req BadError
+	err := ctx.Bind(&req)
+	if err != nil {
+		return sendPetstoreError(ctx, http.StatusBadRequest, "Invalid format for error")
+	}
+
+	if req.Error < 99 || req.Error > 600 {
+		return sendPetstoreError(ctx, http.StatusBadRequest, fmt.Sprintf("Invalid error : %v", req.Error))
+	}
+
+	return ctx.JSON(http.StatusOK, req)
 }

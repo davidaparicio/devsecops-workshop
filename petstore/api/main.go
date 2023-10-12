@@ -56,12 +56,14 @@ func main() {
 
 func main() {
 	var port = flag.Int("port", 4010, "Port for test HTTP server")
-	var insecure = flag.Bool("insecure", false, "API is sensible to BOLA request")
+	var secure = flag.Bool("secure", false, "Secures the API from all authorisation problems")
+	var limit = flag.Bool("limit", false, "enable limit on CreatePet and decrease the performance of CreatePetstore")
 	var disablePet = flag.Bool("disablePet", false, "Disable pet endpoints")
 	flag.Parse()
 
 	// Set insecure bool
-	Insecure = *insecure
+	Insecure = !*secure
+	Limit = *limit
 	DisablePet = *disablePet
 
 	swagger, err := GetSwagger()
@@ -80,7 +82,7 @@ func main() {
 	validatorOptions := &middleware.Options{}
 
 	validatorOptions.Options.AuthenticationFunc = func(c context.Context, input *filter.AuthenticationInput) error {
-		// Authentication is handle
+		// Authentication is handle directly in the api.go code
 		return nil
 	}
 
@@ -90,9 +92,13 @@ func main() {
 	e.Use(echomiddleware.Logger())
 	// Use our validation middleware to check all requests against the
 	// OpenAPI schema.
-
 	e.Use(middleware.OapiRequestValidatorWithOptions(swagger, validatorOptions))
-	//e.Use(middleware.OapiRequestValidator(swagger))
+
+	if Insecure {
+		e.Logger.Error("API Running in insecure mode")
+	} else {
+		e.Logger.Error("API Running in secure mode")
+	}
 
 	// We now register our petStore above as the handler for the interface
 	RegisterHandlers(e, petStore)
