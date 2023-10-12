@@ -31,9 +31,7 @@ You can add in the host's file the following lines to make it easier to test req
 
 Now it is time to test the firewall,execute the following command to create a petstore : 
 
-curl --insecure --location 'https://petstore-secured:4241/petstores' --header 'Content-Type: application/json' --header 'apikey: 65496ebe-6544-4e77-bb66-20b97f6994bb' --data '{
-    "name":"volcamp"
-}'
+curl --insecure --location 'https://petstore-secured:4241/petstores' --header 'Content-Type: application/json' --header 'apikey: 65496ebe-6544-4e77-bb66-20b97f6994bb' --data '{"name":"volcamp"}'
 
 You should receive the following response from the API:
 
@@ -47,9 +45,7 @@ API Response:
 
 Let's try to execute a request which does not follow the CreatePetstore specification:
 
-curl --insecure --location 'https://petstore-secured:4241/petstores' --header 'Content-Type: application/json' --header 'apikey: 65496ebe-6544-4e77-bb66-20b97f6994bb' --data '{
-    "name":"volcamp1"
-}'
+curl --insecure --location 'https://petstore-secured:4241/petstores' --header 'Content-Type: application/json' --header 'apikey: 65496ebe-6544-4e77-bb66-20b97f6994bb' --data '{"name":"volcamp1"}'
 
 Instead of receiving an error from the API, the firewall blocked the request:
 ```
