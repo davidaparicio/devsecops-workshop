@@ -15,7 +15,7 @@ if [ "$1" != "-h" ]; then
     exit
   else
     # claat export *
-    claat export volcamp2023.md
+    claat export devfest2023.md
   fi
 fi
 
