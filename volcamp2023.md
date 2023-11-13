@@ -1006,7 +1006,7 @@ Et comme une [image vaut mille mots](https://davidaparicio.gitlab.io/fr/post/kiw
 ## Feedback
 Duration: 3
 
-Merci pour votre participation **active** et agréable, sur cette très longue durée. Surtout qu'il est bien tard, vous avez bien mérité le déjeuner !
+Merci pour votre participation **active** et agréable, sur cette longue durée. Surtout qu'il est bien tard, vous avez bien mérité le goûter !
 
 Nous, Christopher et David Aparicio, nous profitons pour remercier infiniment les organisateurs et toute l'équipe de Volcamp pour leur aide et leur confiance
 
