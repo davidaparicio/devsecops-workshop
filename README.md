@@ -2,7 +2,7 @@
 
 ## Lien de l'atelier
 
-https://davidaparicio.gitlab.io/fr/codelabs/volcamp23/
+https://davidaparicio.gitlab.io/fr/codelabs/devfeststrasbourg23/
 
 ## Lien vers le projet Go
 

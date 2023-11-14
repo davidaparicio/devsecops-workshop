@@ -1,4 +1,4 @@
-# Workshop Volcamp Petstore API
+# Workshop DevFest Strasbourg 2023 Petstore API
 
 You work in a software development team within a company that manages an online pet sale service called "Petstore." The Product Manager of the company has identified a need to improve the current system and wants to develop an API to make the service more accessible to external partners. Security for this API is a major concern, and you have decided to use the 42Crunch tools to ensure its security throughout the development process.
 
