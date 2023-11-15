@@ -20,7 +20,7 @@
             "url": "http://localhost:4010"
         },
         {
-            "url": "http://localhost:4241"
+            "url": "https://petstore-secured:4241"
         }
     ],
     "paths": {
