@@ -1008,7 +1008,7 @@ Nous vous souhaitons un excellent DevFest Strasbourg 2023 !! ;-D
 
 ![Lien OpenFeedBack](assets/feedback.png)
 
-S'il vous plaît, laissez-nous votre note et vos commentaires sur [OpenFeedBack](https://openfeedback.io/JVBw5TL2fcGc8Mf3QNCE/2023-10-12/tQZH2XDdZHAobTGOPBdM)
+S'il vous plaît, laissez-nous votre note et vos commentaires sur [OpenFeedBack](https://openfeedback.io/BVJQLdpKqfl1IBPtWpRR/0/installparty)
 
 ## E1 - Utip
 Duration: 5
