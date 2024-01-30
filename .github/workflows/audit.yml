@@ -1,0 +1,43 @@
+name: "42crunch-audit-workflow"
+
+# follow standard Code Scanning triggers
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ "main" ]
+  schedule:
+    - cron: '19 9 * * 6'
+
+env:
+  PLATFORM_URL: https://platform.42crunch.com
+
+jobs:
+  run_42c_audit:
+    environment: QA
+    permissions:
+      contents: read # for actions/checkout to fetch code
+      security-events: write # for results upload to Github Code Scanning
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+      - name: 42crunch-static-api-testing
+        uses: 42Crunch/api-security-audit-action@v3
+        with:
+          api-token: ${{ secrets.API_42CRUNCH }}
+          platform-url: ${{ env.PLATFORM_URL}}
+          default-collection-name: GitHub-MyRepo-${{ github.ref_name }}
+          # Upload results to Github code scanning
+          upload-to-code-scanning: false
+          log-level: info
+          json-report: audit-action-report-${{ github.run_id }}
+          sarif-report: 42Crunch_AuditReport_${{ github.run_id }}.SARIF
+      - name: save-audit-report
+        if: always()        
+        uses: actions/upload-artifact@v3
+        with:
+          name: auditaction-report-${{ github.run_id }}
+          path: audit-action-report-${{ github.run_id }}.json
+          if-no-files-found: error
