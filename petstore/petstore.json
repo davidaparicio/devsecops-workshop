@@ -30,7 +30,7 @@
         }
     ],
     "paths": {
-        "/badError":{
+        "/badError": {
             "post": {
                 "x-42c-no-authentication": true,
                 "summary": "Endpoint which return status code in the body",
@@ -144,6 +144,22 @@
         "/login": {
             "post": {
                 "x-42c-no-authentication": true,
+                "x-42c-local-strategy": {
+                    "x-42c-strategy": {
+                        "protections": [
+                            {
+                                "x-42c-request-limiter_0.1": {
+                                    "key": "req_limiter_login",
+                                    "window": 10,
+                                    "hits": 10,
+                                    "burst.enabled": true,
+                                    "burst.window": 2,
+                                    "burst.hits": 5
+                                }
+                            }
+                        ]
+                    }
+                },
                 "tags": [
                     "AuthManager"
                 ],
@@ -227,10 +243,10 @@
             "post": {
                 "security": [
                     {
-                        "CookieAdmin":[]
+                        "CookieAdmin": []
                     },
                     {
-                        "ApiKeyAdmin":[]
+                        "ApiKeyAdmin": []
                     }
                 ],
                 "tags": [
@@ -278,17 +294,17 @@
                 ],
                 "security": [
                     {
-                        "CookieAdmin":[]
+                        "CookieAdmin": []
                     },
                     {
-                        "ApiKeyAdmin":[]
+                        "ApiKeyAdmin": []
                     }
                 ],
                 "summary": "Delete an user",
                 "operationId": "DeleteUser",
                 "parameters": [
                     {
-                       "$ref":"#/components/parameters/PathUsername"
+                        "$ref": "#/components/parameters/PathUsername"
                     }
                 ],
                 "responses": {
@@ -314,10 +330,10 @@
                 ],
                 "security": [
                     {
-                        "CookieAdmin":[]
+                        "CookieAdmin": []
                     },
                     {
-                        "CookieUser":[]
+                        "CookieUser": []
                     }
                 ],
                 "summary": "Create an apikey",
@@ -352,10 +368,10 @@
                 ],
                 "security": [
                     {
-                        "CookieAdmin":[]
+                        "CookieAdmin": []
                     },
                     {
-                        "CookieUser":[]
+                        "CookieUser": []
                     }
                 ],
                 "summary": "Delete an apikey",
@@ -445,10 +461,10 @@
                 ],
                 "security": [
                     {
-                        "ApiKeyAdmin":[]
+                        "ApiKeyAdmin": []
                     },
                     {
-                        "CookieAdmin":[]
+                        "CookieAdmin": []
                     }
                 ],
                 "description": "Creates a new petstore",
@@ -528,10 +544,10 @@
                 ],
                 "security": [
                     {
-                        "ApiKeyAdmin":[]
+                        "ApiKeyAdmin": []
                     },
                     {
-                        "CookieAdmin":[]
+                        "CookieAdmin": []
                     }
                 ],
                 "description": "deletes a single petstore based on the ID supplied",
@@ -567,16 +583,16 @@
                 ],
                 "security": [
                     {
-                        "CookieAdmin":[]
+                        "CookieAdmin": []
                     },
                     {
-                        "ApiKeyAdmin":[]
+                        "ApiKeyAdmin": []
                     },
                     {
-                        "CookieUser":[]
+                        "CookieUser": []
                     },
                     {
-                        "ApiKeyUser":[]
+                        "ApiKeyUser": []
                     }
                 ],
                 "description": "Return all pets in the petstore",
@@ -619,16 +635,16 @@
                 ],
                 "security": [
                     {
-                        "CookieAdmin":[]
+                        "CookieAdmin": []
                     },
                     {
-                        "ApiKeyAdmin":[]
+                        "ApiKeyAdmin": []
                     },
                     {
-                        "CookieUser":[]
+                        "CookieUser": []
                     },
                     {
-                        "ApiKeyUser":[]
+                        "ApiKeyUser": []
                     }
                 ],
                 "description": "Creates a new pet in the store. Duplicates names are not allowed",
@@ -671,16 +687,16 @@
                 ],
                 "security": [
                     {
-                        "CookieAdmin":[]
+                        "CookieAdmin": []
                     },
                     {
-                        "ApiKeyAdmin":[]
+                        "ApiKeyAdmin": []
                     },
                     {
-                        "CookieUser":[]
+                        "CookieUser": []
                     },
                     {
-                        "ApiKeyUser":[]
+                        "ApiKeyUser": []
                     }
                 ],
                 "description": "Returns a user based on a single ID, if the user does not have access to the pet",
@@ -721,16 +737,16 @@
                 ],
                 "security": [
                     {
-                        "CookieAdmin":[]
+                        "CookieAdmin": []
                     },
                     {
-                        "ApiKeyAdmin":[]
+                        "ApiKeyAdmin": []
                     },
                     {
-                        "CookieUser":[]
+                        "CookieUser": []
                     },
                     {
-                        "ApiKeyUser":[]
+                        "ApiKeyUser": []
                     }
                 ],
                 "description": "deletes a single pet based on the ID supplied",
@@ -766,23 +782,23 @@
                 ],
                 "security": [
                     {
-                        "CookieAdmin":[]
+                        "CookieAdmin": []
                     },
                     {
-                        "ApiKeyAdmin":[]
+                        "ApiKeyAdmin": []
                     },
                     {
-                        "CookieUser":[]
+                        "CookieUser": []
                     },
                     {
-                        "ApiKeyUser":[]
+                        "ApiKeyUser": []
                     }
                 ],
                 "description": "Transfer a pet from a petstore to another one, the user must be the owner of the pet",
                 "operationId": "TransferPet",
                 "parameters": [
                     {
-                        "$ref":"#/components/parameters/PathId"
+                        "$ref": "#/components/parameters/PathId"
                     }
                 ],
                 "requestBody": {
@@ -826,15 +842,15 @@
         }
     },
     "components": {
-        "parameters":{
-            "PathId":{
+        "parameters": {
+            "PathId": {
                 "name": "id",
-                        "in": "path",
-                        "description": "ID of pet to fetch",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/components/schemas/Id"
-                        }
+                "in": "path",
+                "description": "ID of pet to fetch",
+                "required": true,
+                "schema": {
+                    "$ref": "#/components/schemas/Id"
+                }
             },
             "PathUsername": {
                 "name": "username",
@@ -880,7 +896,7 @@
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "pattern":"^(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*$"
+                            "pattern": "^(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*$"
                         }
                     }
                 }
@@ -927,7 +943,9 @@
         "schemas": {
             "BadError": {
                 "type": "object",
-                "required": ["error"],
+                "required": [
+                    "error"
+                ],
                 "properties": {
                     "error": {
                         "type": "integer",
@@ -1222,11 +1240,11 @@
                 "properties": {
                     "version": {
                         "type": "string",
-                        "example":"v1.0.0"
+                        "example": "v1.0.0"
                     },
                     "commitId": {
                         "type": "string",
-                        "example":"3271bd2a72002b6a730d6da541c5da355390c4ff"
+                        "example": "3271bd2a72002b6a730d6da541c5da355390c4ff"
                     }
                 }
             },
