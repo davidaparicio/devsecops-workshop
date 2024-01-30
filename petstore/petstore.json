@@ -56,6 +56,16 @@
                                 }
                             }
                         }
+                    },
+                    "default": {
+                        "description": "Response containing the error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BadError"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -911,7 +921,8 @@
                 "required": ["error"],
                 "properties": {
                     "error": {
-                        "type": "integer"
+                        "type": "integer",
+                        "example": 400
                     }
                 }
             },
