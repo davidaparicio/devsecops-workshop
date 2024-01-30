@@ -1,0 +1,1 @@
+sudo sh -c 'echo "127.0.0.1    petstore-secured\n127.0.0.1    petstore" >> /etc/hosts'
