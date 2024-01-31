@@ -1251,7 +1251,8 @@
             "Error": {
                 "type": "object",
                 "required": [
-                    "message"
+                    "message",
+                    "code"
                 ],
                 "properties": {
                     "code": {
