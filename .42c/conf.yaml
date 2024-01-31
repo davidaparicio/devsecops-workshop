@@ -1,0 +1,3 @@
+apis:
+  petstore/petstore.json:
+    alias: swagger-petstore
