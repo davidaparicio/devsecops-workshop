@@ -1,6 +1,6 @@
 # Audit - Intro
 
-You just arrive in the project and you go see the person in charge of the product to ask where the documentation is, to which he replies : 
+You just joined the project and, eager to get up to speed, you ask the tech lead where the documentation is. He looks up from his screen, a knowing smile playing at the corners of his lips, and replies, "Well, that's an interesting story...
 
 ![Documentation](images/image.jpeg)
 
@@ -32,7 +32,7 @@ There are two ways to run the Audit:
 
 # Improvements
 
-All right, after a short interview with the product guy, you can gather the following information regarding the specification :
+All right, after a short interview with the tech lead guy, you can gather the following information regarding the specification :
 
 Server : 
 
@@ -145,6 +145,41 @@ Excellent news! The SQGs have successfully passed, indicating that the file comp
 
 ## Competitors : 
 
-- Spectral
-- Shemathesis
-- Vaccum 
+### Spectral
+
+```
+spectral lint petstoreMinimal.json                                                                                                                                                                                                        09:28:05
+
+/devsecops-workshop/petstore/audit/petstoreMinimal.json
+ 27:21  warning  operation-tag-defined  Operation tags must be defined in global tags.  paths./petstores.get.tags[0]
+ 77:21  warning  operation-tag-defined  Operation tags must be defined in global tags.  paths./petstores.post.tags[0]
+
+✖ 2 problems (0 errors, 2 warnings, 0 infos, 0 hints)
+```
+
+
+### Vaccum (Local CLI) 
+
+
+``` 
+vacuum lint petstoreMinimal.json
+
+...
+...
+...
+
+
+ INFO  Linting against 42 rules: https://quobix.com/vacuum/rulesets/recommended
+
+Category     | Errors | Warnings | Info
+Tags         | 0      | 2        | 0
+Schemas      | 0      | 4        | 0
+Descriptions | 0      | 10       | 0
+Examples     | 0      | 4        | 0
+
+# Dashboard view
+vacuum dashboard petstoreMinimal.json
+```
+
+- Vaccum (Online)
+    - https://pb33f.io/doctor/
