@@ -2,8 +2,6 @@
 
 Now it is time to test the actual implementation of the API with the scan ! 
 
-![Documentation](images/image.gif)
-
 ## API Issues
 
 ### Authorization
@@ -85,5 +83,7 @@ Utilizing the UI scan is a more time-consuming process because it involves scann
 
 ## Competitors : 
 
-- StackHawk 
-- Cherry Bomb 
+- StackHawk (https://www.stackhawk.com)
+- Cherry Bomb (https://github.com/blst-security/cherrybomb)
+- Shemathesis (https://github.com/schemathesis/schemathesis)
+- wiretap (https://github.com/pb33f/wiretap)

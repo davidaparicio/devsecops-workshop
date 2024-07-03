@@ -1,28 +1,30 @@
 {
     "version": "2.0.0",
     "runtimeConfiguration": {
-        "environment": "dev",
-        "logLevel": "info",
+        "environment": "default",
+        "laxTestingModeEnabled": false,
+        "logLevel": "error",
         "logDestination": "stdout+platform",
         "logMaxFileSize": 2147483648,
         "requestHeaderNameRequestId": "x-scan-request-id",
         "requestHeaderNameScenarioId": "x-scan-scenario-id",
-        "requestFlowrate": 10,
+        "requestFlowrate": 100,
         "requestTimeout": 30,
         "requestTlsInsecureSkipVerify": true,
-        "responseFollowRedirection": true,
+        "responseFollowRedirection": false,
+        "responseMaxBodySizeScan": 10485760,
         "happyPathOnly": false,
         "maxScanDuration": 3600,
         "memoryLimit": 2147483648,
         "memoryTimeSpan": 10,
-        "responseMaxBodySizeScan": 10485760,
         "reportMaxHttpResponseSizeHappyPath": 8092,
         "reportMaxBodySizeHappyPath": 8092,
-        "reportMaxHttpResponseSizeTest": 8092,
+        "reportMaxHttpResponseSizeTest": 8092,  
         "reportMaxBodySizeTest": 8092,
-        "reportIssuesOnly": true,
-        "reportMaxIssues": 10000,
-        "reportMaxSize": 104857600
+        "reportIssuesOnly": false,
+        "reportMaxIssues": 1000,
+        "reportMaxSize": 20971520,
+        "reportGenerateCurlCommand": true
     },
     "customizations": {
         "happyPaths": {
@@ -31,11 +33,7 @@
                 "httpStatusExpected": true,
                 "mustBeConformant": true
             },
-            "httpStatusExpected": [
-                "2XX",
-                "400",
-                "404"
-            ]
+            "httpStatusExpected": []
         },
         "tests": {
             "responsePolicy": {
