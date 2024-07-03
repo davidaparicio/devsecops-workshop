@@ -1,7 +1,7 @@
 summary: La sécurité, par où commencer ? Install party
-id: snowcamp24
+id: sunnytech24
 categories: devsecops, security
-tags: snowcamp, snowcampio
+tags: sunnytech
 status: Published
 authors: David Aparicio
 Feedback Link: https://github.com/davidaparicio/devsecops-workshop/issues
@@ -13,9 +13,9 @@ Duration: 3
 
 Votre entreprise a connu une croissance inattendue, des carnets de commandes qui débordent, un tas d'idées nouvelles de projets, et avec la crise actuelle outre-atlantique touchant les GAFAM, la conjecture n'est pas favorable à recruter massivement.
 
-De plus, votre dernier produit de l'équipe a connu un succès fou, SnowCampGPT. Tous les médias en parlent, les serveurs tiennent tant bien que mal à la charge, et après quelques analyses de logs, vous remarquez que certains petits malins réussissent à bénéficier de l'offre commerciale, sans débourser le moindre sou.
+De plus, votre dernier produit de l'équipe a connu un succès fou, SunnyTechGPT. Tous les médias en parlent, les serveurs tiennent tant bien que mal à la charge, et après quelques analyses de logs, vous remarquez que certains petits malins réussissent à bénéficier de l'offre commerciale, sans débourser le moindre sou.
 
-![SnowCampGPT logo](assets/snowcampgpt.jpg)
+![SunnyTechGPT logo](assets/sunnytechgpt.jpg)
 
 Avec l'euphorie des développeurs, et l'engouement des utilisateurs, vous avez mis en production de nouvelles fonctionnalités dans la précipitation, sans revue préalable, ni la réalisation de test d'intrusion.
 
@@ -47,7 +47,7 @@ Responsable du Back-end chez [42Crunch](https://42crunch.com/) et développeur d
 
 * [Mon LinkedIn](https://www.linkedin.com/in/christopher-aparicio-37069b111/)
 
-__PS:__ Comme vous pouvez en doutez, les entreprises qui nous emploient, continuent à recruter activement ;-)
+__PS:__ Comme vous ne pouvez pas en doutez, nous sommes tous les 2, à la recherche d'un prochain challenge comme Software Engineer (Backend)
 
 <!-- ------------------------ -->
 ## Motivations
@@ -212,27 +212,27 @@ Duration: 2
 
 ### Illustration avec GitHub Code Scanning
 
-En préparant cet atelier pour la conférence Snowcamp2024, mon collègue, Christopher Aparicio, a continué à contribuer pour SnowcampGPT. En activant sur tous mes repositories Github, Dependabot & cie, à travers ce [menu](https://github.com/settings/security_analysis), automatiquement, Dependabot me remonte les failles de sécurité de notre code. La prevue en images (ou plutôt en ligne de commande, durant les fameux git pull/push) :
+En préparant cet atelier pour la conférence SunnyTech2024, mon collègue, Christopher Aparicio, a continué à contribuer pour SunnyTechGPT. En activant sur tous mes repositories Github, Dependabot & cie, à travers ce [menu](https://github.com/settings/security_analysis), automatiquement, Dependabot me remonte les failles de sécurité de notre code. La prevue en images (ou plutôt en ligne de commande, durant les fameux git pull/push) :
 
 git pull (Dependabot a ouvert automatique 3 PR pour fixer les failles, maintenant à moi de les tester)
 ``` Bash
-devsecops-workshop-snowcampfr24 on main [⇡] took 32s
+devsecops-workshop-sunnytechfr24 on main [⇡] took 32s
 ❯ git pull
 remote: Enumerating objects: 23, done.
 remote: Counting objects: 100% (23/23), done.
 remote: Compressing objects: 100% (18/18), done.
 remote: Total 18 (delta 15), reused 0 (delta 0), pack-reused 0
 Unpacking objects: 100% (18/18), 4.12 KiB | 111.00 KiB/s, done.
-From github.com:davidaparicio/devsecops-workshop-snowcampfr24
+From github.com:davidaparicio/devsecops-workshop-sunnytechfr24
  * [new branch]      dependabot/go_modules/petstore/api/github.com/labstack/echo/v4-4.9.0 -> origin/dependabot/go_modules/petstore/api/github.com/labstack/echo/v4-4.9.0
  * [new branch]      dependabot/go_modules/petstore/api/golang.org/x/net-0.7.0 -> origin/dependabot/go_modules/petstore/api/golang.org/x/net-0.7.0
  * [new branch]      dependabot/go_modules/petstore/api/golang.org/x/text-0.3.8 -> origin/dependabot/go_modules/petstore/api/golang.org/x/text-0.3.8
 Already up to date.
 ```
 
-git push (GitHub me signale [4 vulnérabilités](https://github.com/davidaparicio/devsecops-workshop-snowcampfr24/security/dependabot), dont 1 critique)
+git push (GitHub me signale [4 vulnérabilités](https://github.com/davidaparicio/devsecops-workshop-sunnytechfr24/security/dependabot), dont 1 critique)
 ``` Bash
-devsecops-workshop-snowcampfr24 on main [⇡] took 7s
+devsecops-workshop-sunnytechfr24 on main [⇡] took 7s
 ❯ git push
 Enumerating objects: 9, done.
 Counting objects: 100% (9/9), done.
@@ -242,10 +242,10 @@ Writing objects: 100% (6/6), 1023.91 KiB | 15.28 MiB/s, done.
 Total 6 (delta 2), reused 0 (delta 0), pack-reused 0
 remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
 remote:
-remote: GitHub found 4 vulnerabilities on davidaparicio/devsecops-workshop-snowcampfr24's default branch (1 critical, 3 high). To find out more, visit:
-remote:      https://github.com/davidaparicio/devsecops-workshop-snowcampfr24/security/dependabot
+remote: GitHub found 4 vulnerabilities on davidaparicio/devsecops-workshop-sunnytechfr24's default branch (1 critical, 3 high). To find out more, visit:
+remote:      https://github.com/davidaparicio/devsecops-workshop-sunnytechfr24/security/dependabot
 remote:
-To github.com:davidaparicio/devsecops-workshop-snowcampfr24.git
+To github.com:davidaparicio/devsecops-workshop-sunnytechfr24.git
    3040a1d..698757c  main -> main
 ```
 
@@ -411,9 +411,13 @@ Duration: 1
 
 Visible directement sur [Github](https://github.com/davidaparicio/namecheck/pull/10) ou sur l'image ci-dessous.
 
-Note: CodeQL donne le même style de résultat que cet exemple avec GoSec. J'en ai profité pour activer la version gratuite de SonarCloud ;-)
+Note: CodeQL donne le même style de résultat que cet exemple avec GoSec. J'en ai profité pour activer la version gratuite de SonarCloud!
 
 ![Exemple avec gosec](assets/gosec.jpg)
+
+Tout cela afin d'éviter ce genre de problème "critique" un jour des élections (DDos possible si les timeouts ne sont pas définis)
+
+![Résultats des élections législatives, le 30 Juin 2024 lors du 1er tour](assets/timeout_senat.jpg)
 
 <!-- ------------------------ -->
 ## Ex: Corriger une erreur
@@ -439,7 +443,7 @@ Duration: 10
 
 ![NewsBlur - Logo](assets/newsblur.jpg)
 
-En effet, vous vous rappelez des conséquences de l'attaque contre fournisseur de données pour SnowcampGPT: [NewsBlur](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/). Pour éviter la même mésaventure, vous prenez les devant. Tester votre déploiement, en vérifiant les Best Practices en Sécurité.
+En effet, vous vous rappelez des conséquences de l'attaque contre fournisseur de données pour SunnyTechGPT: [NewsBlur](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/). Pour éviter la même mésaventure, vous prenez les devant. Tester votre déploiement, en vérifiant les Best Practices en Sécurité.
 
 __Objectifs de cette étape__:
 * Codez deux petites fonctions de test qui valide (SUCCÈS) si elle n'arrive à se connecter à votre BDD sans identifiants, et ceux par défaut comme `admin:admin`
@@ -452,6 +456,21 @@ __Objectifs de cette étape__:
 ![NewsBlur - Hack Timeline](assets/newsblur_hack.png)
 
 [Source la timeline, le blog de NewsBlur - lien direct](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/)
+
+<!-- ------------------------ -->
+## LLM
+Duration: 3
+
+### OWASP Top 10 for LLM Applications v1.1
+Comme vous pouvez vous en douter, les LLM/Chatbots sont vulnérables à de multiples types d'attaques. L'[OWASP, Open Web Application Security Project](https://owasp.org/) nous propose une [liste de 10 attaques](https://genai.owasp.org/llm-top-10/)
+
+[![Top 10 for LLMs and Generative AI Apps](assets/owasp_llm.jpg)](https://genai.owasp.org/llm-top-10/)
+
+Pour en savoir plus, nous vous recommandons cette [excellente vidéo](https://youtu.be/6LBwNd53kmw) de Secureaks.
+
+[![Top 10 for LLMs and Generative AI Apps](assets/owasp_llm2.jpg)](https://youtu.be/6LBwNd53kmw)
+
+<!-- ------------------------ -->
 
 <!-- ------------------------ -->
 ## Tests
@@ -468,7 +487,7 @@ Duration: 15
 
 ### Démonstrations des fonctionnalités de 42Crunch
 
-Cette partie sera faite en session live coding, durant l'atelier Snowcamp2024.
+Cette partie sera faite en session live coding, durant l'atelier SunnyTech2024.
 
 ![Sécurité - Dans un projet IT informatique](assets/it_security.png)
 
@@ -894,7 +913,7 @@ Duration: 15
 
 ![NewsBlur - Logo](assets/newsblur.jpg)
 
-Vous vous souvenez à nouveau des conséquences de l'attaque contre fournisseur de données pour SnowcampGPT: [NewsBlur](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/). Pour éviter une mésaventure, vous prenez les devant: Tester de manière fréquente vos procédures de snapshot backup/restore.
+Vous vous souvenez à nouveau des conséquences de l'attaque contre fournisseur de données pour SunnyTechGPT: [NewsBlur](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/). Pour éviter une mésaventure, vous prenez les devant: Tester de manière fréquente vos procédures de snapshot backup/restore.
 
 __Objectifs de cette étape__:
 * Lister ce qui est indispensable pour votre sauvegarde (état mais aussi fichiers de configuration/secrets chiffrés)
@@ -948,7 +967,15 @@ Pour ceux qui n'ont pas pu participer au workshop du DevoxxFR2023, ["Le petit ch
 <!-- https://github.com/Sphinxgaia/little-red-riding-hood/tree/lab-devoxx -->
 ![Les 4C](assets/quatre_c.jpg)
 
-N'hésitez pas à nous contacter pour en savoir plus sur ce domaine, et à nous poser des questions ;-)
+N'hésitez pas à nous contacter pour en savoir plus sur ce domaine, et à nous poser des questions!
+
+<!-- ------------------------ -->
+## Popeye
+Duration: 1
+
+Une illustration rapide avec l'installation de Popeye et son rapport d'audit sur un cluster Kubernetes.
+
+![Cloud Native - Popeye](assets/popeye.jpg)
 
 <!-- ------------------------ -->
 ## SecureCodeBox
@@ -964,9 +991,9 @@ Pour éviter de tout installer à la main sur son cluster Kubernetes de PROD, l'
 ## Félicitations
 Duration: 2
 
-![Félicitations de la part de toute l'équipe](assets/snowcamp_team.jpg)
+![Félicitations de la part de toute l'équipe](assets/sunnytech_team.jpg)
 
-Votre CEO ainsi que votre CTO vous félicient pour ces actions préventives et actives pour renforcer les produits de l'entreprise, et surtout votre produit phare: **SnowcampGPT**. Vous pouvez être fier.e pour ces exploits menés avec brio !
+Votre CEO ainsi que votre CTO vous félicient pour ces actions préventives et actives pour renforcer les produits de l'entreprise, et surtout votre produit phare: **SunnyTechGPT**. Vous pouvez être fier.e pour ces exploits menés avec brio !
 
 ![CommitStrip - ChatGPT](assets/chatgpt.jpg)
 
@@ -1008,9 +1035,9 @@ Duration: 3
 
 Merci pour votre participation **active** et agréable, sur cette très longue durée. Surtout qu'il est tard, vous avez bien mérité le déjeuner !
 
-Nous, Christopher et David Aparicio, nous profitons pour remercier infiniment les organisateurs et toute l'équipe de Snowcamp pour leur aide et leur confiance
+Nous, Christopher et David Aparicio, nous profitons pour remercier infiniment les organisateurs et toute l'équipe de SunnyTech pour leur aide et leur confiance
 
-Nous vous souhaitons un excellent Snowcamp 2024 !! ;-D
+Nous vous souhaitons un excellent SunnyTech 2024 !! ;-D
 
 ![Lien OpenFeedBack](assets/feedback.png)
 
@@ -1020,9 +1047,9 @@ S'il vous plaît, laissez-nous votre note et vos commentaires sur [OpenFeedBack]
 Duration: 5
 
 ### Utip et Mongopay
-![SnowcampGPT scale](assets/snowcampgpt_curve.jpg)
+![SunnyTechGPT scale](assets/sunnytechgpt_curve.jpg)
 
-SnowcampGPT connait une croissance incroyable, comme l'illustre le graphique: de nombreux articles en parlent, des directs sur les plateaux télévisés, et même l'[Italie](https://www.bbc.com/news/technology-65139406) menace de vous bloquer, pour des raisons de vie privée.
+SunnyTechGPT connait une croissance incroyable, comme l'illustre le graphique: de nombreux articles en parlent, des directs sur les plateaux télévisés, et même l'[Italie](https://www.bbc.com/news/technology-65139406) menace de vous bloquer, pour des raisons de vie privée.
 
 
 Mais votre CEO découvre cette [nouvelle](https://www.numerama.com/tech/1325518-utip-ferme-pourquoi-la-plateforme-francaise-de-financement-disparait-elle-si-abruptement.html) avec effroi : "uTip, la plateforme de financement participatif française (Cocorico) concurrente de Tipeee, vient fermer. L’entreprise a été placée en liquidation judiciaire le 23 mars 2023, et son activité s'est arrêtée le 4 avril 2023" ([Source](https://www.numerama.com/tech/1325518-utip-ferme-pourquoi-la-plateforme-francaise-de-financement-disparait-elle-si-abruptement.html)). uTip ferme à cause d'un intermédiaire financier, Mangopay, qui a décidé de mettre fin à leur contrat. Vous avez pour objectif, de le rasurer face à cette triste annonce, ébranlant toute la [French Tech](https://lafrenchtech.com/fr/).
@@ -1081,8 +1108,8 @@ sed -i '' "${DELETE_LINE?}d" ~/.ssh/known_hosts -->
 ## E3 - VM2
 Duration: 5
 
-### À la veille de la plénière de Snowcamp2024...
-![Snowcamp2024](assets/snowcamp.jpg)
+### À la veille de la plénière de SunnyTech2024...
+![SunnyTech2024](assets/sunnytech.jpg)
 
 Bientôt le week-end prolongé.. Mais le vendredi matin 7 Avril 2023, la lecture de ce [tweet](https://twitter.com/MalwareJake/status/1644399193987981313) et de la [nouvelle](https://twitter.com/MalwareJake/status/1644399193987981313) vous glace le sang...
 
@@ -1094,7 +1121,7 @@ Happy Friday to everyone - enjoy your weekend if you can,
 I suspect this will be big next week...
 ```
 
-Votre CTO ainsi que votre CEO s'inquiètent.. À la veille du [Snowcamp2024](https://www.snowcamp.io/) et de sa grande plénière, où votre startup fera son show devant 2950 participants durant une session live coding: Est-ce que votre startup est-elle vulnérable à cette faille majeure, pouvant mettre en péril cette démo importante, devant des passionnés de la Tech ainsi que la presse ?
+Votre CTO ainsi que votre CEO s'inquiètent.. À la veille du [SunnyTech2024](https://www.sunnytech.io/) et de sa grande plénière, où votre startup fera son show devant 2950 participants durant une session live coding: Est-ce que votre startup est-elle vulnérable à cette faille majeure, pouvant mettre en péril cette démo importante, devant des passionnés de la Tech ainsi que la presse ?
 
 __Objectifs de cette étape__:
 * Analyser le language et la librairie impactée (trop facile)
@@ -1216,5 +1243,7 @@ Pour nos futurs ateliers
 * [Scrubing Github History of Sensitive Data](https://www.youtube.com/watch?v=hseEfxCHzYw)
 * [Anais Urlichs, #100 Days Of Kubernetes](https://www.youtube.com/watch?v=W6J6UipVNGA&list=PLWnens-FYbIpUpmiiNYfkqTZQUYppGMFV) Kubernetes Security through GitOps [Best Practices: ArgoCD and Starboard]((https://www.youtube.com/watch?v=YvMY8to9aHI))
 * [DDOS detection](https://vincent.bernat.ch/fr/blog/2023-akvorado-ddos-flowspec)
+* [NetworkChuck - ZPhisher/blackeye: Phishing attacks are SCARY easy to do!! (let me show you!)](https://youtu.be/u9dBGWVwMMA?)
+* [Chaîne YouTube: Secureaks - Pentest et cybersécurité](https://www.youtube.com/@Secureaks)
 
 <!-- ------------------------ -->
