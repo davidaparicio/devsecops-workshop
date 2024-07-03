@@ -23,15 +23,15 @@
   <google-codelab-analytics gaid="UA-49880327-14" ga4id=""></google-codelab-analytics>
   <google-codelab codelab-gaid=""
                   codelab-ga4id=""
-                  id="snowcamp24"
+                  id="sunnytech24"
                   title="La sécurité, par où commencer ? Install party 🎉"
                   environment="web"
                   feedback-link="https://github.com/davidaparicio/devsecops-workshop/issues">
     
       <google-codelab-step label="Présentation" duration="3">
         <p>Votre entreprise a connu une croissance inattendue, des carnets de commandes qui débordent, un tas d&#39;idées nouvelles de projets, et avec la crise actuelle outre-atlantique touchant les GAFAM, la conjecture n&#39;est pas favorable à recruter massivement.</p>
-<p>De plus, votre dernier produit de l&#39;équipe a connu un succès fou, SnowCampGPT. Tous les médias en parlent, les serveurs tiennent tant bien que mal à la charge, et après quelques analyses de logs, vous remarquez que certains petits malins réussissent à bénéficier de l&#39;offre commerciale, sans débourser le moindre sou.</p>
-<p class="image-container"><img alt="SnowCampGPT logo" src="img/2f8a21f7ea42c26b.jpg"></p>
+<p>De plus, votre dernier produit de l&#39;équipe a connu un succès fou, SunnyTechGPT. Tous les médias en parlent, les serveurs tiennent tant bien que mal à la charge, et après quelques analyses de logs, vous remarquez que certains petits malins réussissent à bénéficier de l&#39;offre commerciale, sans débourser le moindre sou.</p>
+<p class="image-container"><img alt="SunnyTechGPT logo" src="img/e0abae3e12f808f0.jpg"></p>
 <p>Avec l&#39;euphorie des développeurs, et l&#39;engouement des utilisateurs, vous avez mis en production de nouvelles fonctionnalités dans la précipitation, sans revue préalable, ni la réalisation de test d&#39;intrusion.</p>
 <p>Vous ne voyez plus qu&#39;une solution, face à la charge de travail déjà colossale dans l&#39;équipe, l&#39;application immédiate de la méthologie DevSecOps: pour sécuriser votre outil et maintenir la position de l&#39;entreprise sur son piédestal. Car vous devez éviter, à tout prix pour votre image, la fuite de toutes vos données clientes, ainsi que vos secrets de fabrication, comme ce fût le cas pour <a href="https://arstechnica.com/information-technology/2021/10/twitch-admits-to-major-leak-exposing-source-code-creator-earnings/" target="_blank">Twitch, le 6 Octobre 2021</a>.</p>
 <p class="image-container"><img alt="Twitter Twitch" src="img/ffedf5e1e4d167c1.jpg"></p>
@@ -54,7 +54,7 @@
 <ul>
 <li><a href="https://www.linkedin.com/in/christopher-aparicio-37069b111/" target="_blank">Mon LinkedIn</a></li>
 </ul>
-<p><strong>PS:</strong> Comme vous pouvez en doutez, les entreprises qui nous emploient, continuent à recruter activement ;-)</p>
+<p><strong>PS:</strong> Comme vous ne pouvez pas en doutez, nous sommes tous les 2, à la recherche d&#39;un prochain challenge comme Software Engineer (Backend)</p>
 
 
       </google-codelab-step>
@@ -180,23 +180,23 @@
     
       <google-codelab-step label="PR Aware" duration="2">
         <h2 is-upgraded>Illustration avec GitHub Code Scanning</h2>
-<p>En préparant cet atelier pour la conférence Snowcamp2024, mon collègue, Christopher Aparicio, a continué à contribuer pour SnowcampGPT. En activant sur tous mes repositories Github, Dependabot &amp; cie, à travers ce <a href="https://github.com/settings/security_analysis" target="_blank">menu</a>, automatiquement, Dependabot me remonte les failles de sécurité de notre code. La prevue en images (ou plutôt en ligne de commande, durant les fameux git pull/push) :</p>
+<p>En préparant cet atelier pour la conférence SunnyTech2024, mon collègue, Christopher Aparicio, a continué à contribuer pour SunnyTechGPT. En activant sur tous mes repositories Github, Dependabot &amp; cie, à travers ce <a href="https://github.com/settings/security_analysis" target="_blank">menu</a>, automatiquement, Dependabot me remonte les failles de sécurité de notre code. La prevue en images (ou plutôt en ligne de commande, durant les fameux git pull/push) :</p>
 <p>git pull (Dependabot a ouvert automatique 3 PR pour fixer les failles, maintenant à moi de les tester)</p>
-<pre><code language="language-Bash" class="language-Bash">devsecops-workshop-snowcampfr24 on main [⇡] took 32s
+<pre><code language="language-Bash" class="language-Bash">devsecops-workshop-sunnytechfr24 on main [⇡] took 32s
 ❯ git pull
 remote: Enumerating objects: 23, done.
 remote: Counting objects: 100% (23/23), done.
 remote: Compressing objects: 100% (18/18), done.
 remote: Total 18 (delta 15), reused 0 (delta 0), pack-reused 0
 Unpacking objects: 100% (18/18), 4.12 KiB | 111.00 KiB/s, done.
-From github.com:davidaparicio/devsecops-workshop-snowcampfr24
+From github.com:davidaparicio/devsecops-workshop-sunnytechfr24
  * [new branch]      dependabot/go_modules/petstore/api/github.com/labstack/echo/v4-4.9.0 -&gt; origin/dependabot/go_modules/petstore/api/github.com/labstack/echo/v4-4.9.0
  * [new branch]      dependabot/go_modules/petstore/api/golang.org/x/net-0.7.0 -&gt; origin/dependabot/go_modules/petstore/api/golang.org/x/net-0.7.0
  * [new branch]      dependabot/go_modules/petstore/api/golang.org/x/text-0.3.8 -&gt; origin/dependabot/go_modules/petstore/api/golang.org/x/text-0.3.8
 Already up to date.
 </code></pre>
-<p>git push (GitHub me signale <a href="https://github.com/davidaparicio/devsecops-workshop-snowcampfr24/security/dependabot" target="_blank">4 vulnérabilités</a>, dont 1 critique)</p>
-<pre><code language="language-Bash" class="language-Bash">devsecops-workshop-snowcampfr24 on main [⇡] took 7s
+<p>git push (GitHub me signale <a href="https://github.com/davidaparicio/devsecops-workshop-sunnytechfr24/security/dependabot" target="_blank">4 vulnérabilités</a>, dont 1 critique)</p>
+<pre><code language="language-Bash" class="language-Bash">devsecops-workshop-sunnytechfr24 on main [⇡] took 7s
 ❯ git push
 Enumerating objects: 9, done.
 Counting objects: 100% (9/9), done.
@@ -206,10 +206,10 @@ Writing objects: 100% (6/6), 1023.91 KiB | 15.28 MiB/s, done.
 Total 6 (delta 2), reused 0 (delta 0), pack-reused 0
 remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
 remote:
-remote: GitHub found 4 vulnerabilities on davidaparicio/devsecops-workshop-snowcampfr24&#39;s default branch (1 critical, 3 high). To find out more, visit:
-remote:      https://github.com/davidaparicio/devsecops-workshop-snowcampfr24/security/dependabot
+remote: GitHub found 4 vulnerabilities on davidaparicio/devsecops-workshop-sunnytechfr24&#39;s default branch (1 critical, 3 high). To find out more, visit:
+remote:      https://github.com/davidaparicio/devsecops-workshop-sunnytechfr24/security/dependabot
 remote:
-To github.com:davidaparicio/devsecops-workshop-snowcampfr24.git
+To github.com:davidaparicio/devsecops-workshop-sunnytechfr24.git
    3040a1d..698757c  main -&gt; main
 </code></pre>
 <p>Nous pouvons faire la même chose localement, en configurant les tests pre-commit de git. Prenons l&#39;exemple du projet Python &#34;py_bandit&#34; avec un check sécurité réalisé par l&#39;outil <a href="https://github.com/PyCQA/bandit" target="_blank">Bandit</a>.</p>
@@ -358,8 +358,10 @@ jobs:
       <google-codelab-step label="Résultat" duration="1">
         <h2 is-upgraded>Le résultat sur PR (GitHub)</h2>
 <p>Visible directement sur <a href="https://github.com/davidaparicio/namecheck/pull/10" target="_blank">Github</a> ou sur l&#39;image ci-dessous.</p>
-<p>Note: CodeQL donne le même style de résultat que cet exemple avec GoSec. J&#39;en ai profité pour activer la version gratuite de SonarCloud ;-)</p>
+<p>Note: CodeQL donne le même style de résultat que cet exemple avec GoSec. J&#39;en ai profité pour activer la version gratuite de SonarCloud!</p>
 <p class="image-container"><img alt="Exemple avec gosec" src="img/b1ff473611772c4a.jpg"></p>
+<p>Tout cela afin d&#39;éviter ce genre de problème &#34;critique&#34; un jour des élections (DDos possible si les timeouts ne sont pas définis)</p>
+<p class="image-container"><img alt="Résultats des élections législatives, le 30 Juin 2024 lors du 1er tour" src="img/50bfe190fa7bebfd.jpg"></p>
 
 
       </google-codelab-step>
@@ -382,7 +384,7 @@ jobs:
       <google-codelab-step label="Ex: Test E2E" duration="10">
         <h2 is-upgraded>Compilation : Tests basiques de sécurité des applications (de bout en bout)</h2>
 <p class="image-container"><img alt="NewsBlur - Logo" src="img/13781bbbb2005845.jpg"></p>
-<p>En effet, vous vous rappelez des conséquences de l&#39;attaque contre fournisseur de données pour SnowcampGPT: <a href="https://blog.newsblur.com/2021/06/28/story-of-a-hacking/" target="_blank">NewsBlur</a>. Pour éviter la même mésaventure, vous prenez les devant. Tester votre déploiement, en vérifiant les Best Practices en Sécurité.</p>
+<p>En effet, vous vous rappelez des conséquences de l&#39;attaque contre fournisseur de données pour SunnyTechGPT: <a href="https://blog.newsblur.com/2021/06/28/story-of-a-hacking/" target="_blank">NewsBlur</a>. Pour éviter la même mésaventure, vous prenez les devant. Tester votre déploiement, en vérifiant les Best Practices en Sécurité.</p>
 <p><strong>Objectifs de cette étape</strong>:</p>
 <ul>
 <li>Codez deux petites fonctions de test qui valide (SUCCÈS) si elle n&#39;arrive à se connecter à votre BDD sans identifiants, et ceux par défaut comme <code>admin:admin</code></li>
@@ -392,6 +394,16 @@ jobs:
 <p class="image-container"><img alt="ihebski/DefaultCreds-cheat-sheet" src="img/c6fd21ff629d927.jpg"></p>
 <p class="image-container"><img alt="NewsBlur - Hack Timeline" src="img/a2d89a17382a138d.png"></p>
 <p><a href="https://blog.newsblur.com/2021/06/28/story-of-a-hacking/" target="_blank">Source la timeline, le blog de NewsBlur - lien direct</a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="LLM" duration="3">
+        <h2 is-upgraded>OWASP Top 10 for LLM Applications v1.1</h2>
+<p>Comme vous pouvez vous en douter, les LLM/Chatbots sont vulnérables à de multiples types d&#39;attaques. L&#39;<a href="https://owasp.org/" target="_blank">OWASP, Open Web Application Security Project</a> nous propose une <a href="https://genai.owasp.org/llm-top-10/" target="_blank">liste de 10 attaques</a></p>
+<p><a href="https://genai.owasp.org/llm-top-10/" target="_blank"><img alt="Top 10 for LLMs and Generative AI Apps" src="img/c800c21972a286b2.jpg"></a></p>
+<p>Pour en savoir plus, nous vous recommandons cette <a href="https://youtu.be/6LBwNd53kmw" target="_blank">excellente vidéo</a> de Secureaks.</p>
+<p><a href="https://youtu.be/6LBwNd53kmw" target="_blank"><img alt="Top 10 for LLMs and Generative AI Apps" src="img/f9249065907e7e6.jpg"></a></p>
 
 
       </google-codelab-step>
@@ -406,7 +418,7 @@ jobs:
     
       <google-codelab-step label="Ex: Scan d&#39;API" duration="15">
         <h2 is-upgraded>Démonstrations des fonctionnalités de 42Crunch</h2>
-<p>Cette partie sera faite en session live coding, durant l&#39;atelier Snowcamp2024.</p>
+<p>Cette partie sera faite en session live coding, durant l&#39;atelier SunnyTech2024.</p>
 <p class="image-container"><img alt="Sécurité - Dans un projet IT informatique" src="img/39d2c76fe90908c8.png"></p>
 <p>Vulnerable REST API with OWASP top 10 vulnerabilities for security testing</p>
 <p>Vous pouvez également, à la fin de l&#39;atelier, jouer avec ce repo GitHub <a href="https://github.com/erev0s/VAmPI" target="_blank">VAmPI</a></p>
@@ -787,7 +799,7 @@ spec:
       <google-codelab-step label="Ex: Crash &amp; Burn" duration="15">
         <h2 is-upgraded>Gagner en confiance en ses sauvegardes</h2>
 <p class="image-container"><img alt="NewsBlur - Logo" src="img/13781bbbb2005845.jpg"></p>
-<p>Vous vous souvenez à nouveau des conséquences de l&#39;attaque contre fournisseur de données pour SnowcampGPT: <a href="https://blog.newsblur.com/2021/06/28/story-of-a-hacking/" target="_blank">NewsBlur</a>. Pour éviter une mésaventure, vous prenez les devant: Tester de manière fréquente vos procédures de snapshot backup/restore.</p>
+<p>Vous vous souvenez à nouveau des conséquences de l&#39;attaque contre fournisseur de données pour SunnyTechGPT: <a href="https://blog.newsblur.com/2021/06/28/story-of-a-hacking/" target="_blank">NewsBlur</a>. Pour éviter une mésaventure, vous prenez les devant: Tester de manière fréquente vos procédures de snapshot backup/restore.</p>
 <p><strong>Objectifs de cette étape</strong>:</p>
 <ul>
 <li>Lister ce qui est indispensable pour votre sauvegarde (état mais aussi fichiers de configuration/secrets chiffrés)</li>
@@ -834,7 +846,14 @@ spec:
 <p class="image-container"><img alt="Cloud Native" src="img/24eb8dda306f563b.jpg"></p>
 <p>Pour ceux qui n&#39;ont pas pu participer au workshop du DevoxxFR2023, <a href="https://cfp.devoxx.fr/2023/talk/NEI-2442/_Le_petit_chaperon_rouge_pratique_enfin_le_%22Zero_Trust%22_(en_mode_labs)" target="_blank">&#34;Le petit chaperon rouge pratique enfin le Zero Trust&#34;</a>, par <a href="https://twitter.com/sphinxgaiaone" target="_blank">Jérôme Masson</a>, <a href="@https://twitter.com/jpthiery" target="_blank">Jean-Pascal Thiery</a>, <a href="https://twitter.com/zebeurton" target="_blank">David Drugeon-Hamon</a>, voici une très bonne synthèse de ce monde avec le principe des 4 C: Cloud, Cluster, Container, Code.</p>
 <p class="image-container"><img alt="Les 4C" src="img/8263bed65042e7d9.jpg"></p>
-<p>N&#39;hésitez pas à nous contacter pour en savoir plus sur ce domaine, et à nous poser des questions ;-)</p>
+<p>N&#39;hésitez pas à nous contacter pour en savoir plus sur ce domaine, et à nous poser des questions!</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Popeye" duration="1">
+        <p>Une illustration rapide avec l&#39;installation de Popeye et son rapport d&#39;audit sur un cluster Kubernetes.</p>
+<p class="image-container"><img alt="Cloud Native - Popeye" src="img/9e40b56ade36525a.jpg"></p>
 
 
       </google-codelab-step>
@@ -848,8 +867,8 @@ spec:
       </google-codelab-step>
     
       <google-codelab-step label="Félicitations" duration="2">
-        <p class="image-container"><img alt="Félicitations de la part de toute l&amp;rsquo;équipe" src="img/7753ba71edfe53cd.jpg"></p>
-<p>Votre CEO ainsi que votre CTO vous félicient pour ces actions préventives et actives pour renforcer les produits de l&#39;entreprise, et surtout votre produit phare: <strong>SnowcampGPT</strong>. Vous pouvez être fier.e pour ces exploits menés avec brio !</p>
+        <p class="image-container"><img alt="Félicitations de la part de toute l&amp;rsquo;équipe" src="img/5693a52a37de2861.jpg"></p>
+<p>Votre CEO ainsi que votre CTO vous félicient pour ces actions préventives et actives pour renforcer les produits de l&#39;entreprise, et surtout votre produit phare: <strong>SunnyTechGPT</strong>. Vous pouvez être fier.e pour ces exploits menés avec brio !</p>
 <p class="image-container"><img alt="CommitStrip - ChatGPT" src="img/a0a34cec873e080b.jpg"></p>
 <p><a href="https://www.commitstrip.com/fr/2022/12/09/a-whole-new-world/?setLocale=1" target="_blank">Source de la BD, CommitStrip - lien direct</a></p>
 
@@ -885,8 +904,8 @@ spec:
     
       <google-codelab-step label="Feedback" duration="3">
         <p>Merci pour votre participation <strong>active</strong> et agréable, sur cette très longue durée. Surtout qu&#39;il est tard, vous avez bien mérité le déjeuner !</p>
-<p>Nous, Christopher et David Aparicio, nous profitons pour remercier infiniment les organisateurs et toute l&#39;équipe de Snowcamp pour leur aide et leur confiance</p>
-<p>Nous vous souhaitons un excellent Snowcamp 2024 !! ;-D</p>
+<p>Nous, Christopher et David Aparicio, nous profitons pour remercier infiniment les organisateurs et toute l&#39;équipe de SunnyTech pour leur aide et leur confiance</p>
+<p>Nous vous souhaitons un excellent SunnyTech 2024 !! ;-D</p>
 <p class="image-container"><img alt="Lien OpenFeedBack" src="img/68bab930af95ed63.png"></p>
 <p>S&#39;il vous plaît, laissez-nous votre note et vos commentaires sur <a href="https://openfeedback.io/o7zyKdkdRulRnrtU3DZo/2024-01-31/d83195ad7c5a6422c2caf7d3d444e27c" target="_blank">OpenFeedBack</a></p>
 
@@ -895,8 +914,8 @@ spec:
     
       <google-codelab-step label="E1 - Utip" duration="5">
         <h2 is-upgraded>Utip et Mongopay</h2>
-<p class="image-container"><img alt="SnowcampGPT scale" src="img/632a8407cec88e64.jpg"></p>
-<p>SnowcampGPT connait une croissance incroyable, comme l&#39;illustre le graphique: de nombreux articles en parlent, des directs sur les plateaux télévisés, et même l&#39;<a href="https://www.bbc.com/news/technology-65139406" target="_blank">Italie</a> menace de vous bloquer, pour des raisons de vie privée.</p>
+<p class="image-container"><img alt="SunnyTechGPT scale" src="img/aa180f361fa89460.jpg"></p>
+<p>SunnyTechGPT connait une croissance incroyable, comme l&#39;illustre le graphique: de nombreux articles en parlent, des directs sur les plateaux télévisés, et même l&#39;<a href="https://www.bbc.com/news/technology-65139406" target="_blank">Italie</a> menace de vous bloquer, pour des raisons de vie privée.</p>
 <p>Mais votre CEO découvre cette <a href="https://www.numerama.com/tech/1325518-utip-ferme-pourquoi-la-plateforme-francaise-de-financement-disparait-elle-si-abruptement.html" target="_blank">nouvelle</a> avec effroi : &#34;uTip, la plateforme de financement participatif française (Cocorico) concurrente de Tipeee, vient fermer. L&#39;entreprise a été placée en liquidation judiciaire le 23 mars 2023, et son activité s&#39;est arrêtée le 4 avril 2023&#34; (<a href="https://www.numerama.com/tech/1325518-utip-ferme-pourquoi-la-plateforme-francaise-de-financement-disparait-elle-si-abruptement.html" target="_blank">Source</a>). uTip ferme à cause d&#39;un intermédiaire financier, Mangopay, qui a décidé de mettre fin à leur contrat. Vous avez pour objectif, de le rasurer face à cette triste annonce, ébranlant toute la <a href="https://lafrenchtech.com/fr/" target="_blank">French Tech</a>.</p>
 <p><strong>Objectifs de cette étape</strong>:</p>
 <ul>
@@ -946,8 +965,8 @@ and the repository exists.
       </google-codelab-step>
     
       <google-codelab-step label="E3 - VM2" duration="5">
-        <h2 is-upgraded>À la veille de la plénière de Snowcamp2024...</h2>
-<p class="image-container"><img alt="Snowcamp2024" src="img/ecd6fb93bc1de7f1.jpg"></p>
+        <h2 is-upgraded>À la veille de la plénière de SunnyTech2024...</h2>
+<p class="image-container"><img alt="SunnyTech2024" src="img/93989e6074e3813c.jpg"></p>
 <p>Bientôt le week-end prolongé.. Mais le vendredi matin 7 Avril 2023, la lecture de ce <a href="https://twitter.com/MalwareJake/status/1644399193987981313" target="_blank">tweet</a> et de la <a href="https://twitter.com/MalwareJake/status/1644399193987981313" target="_blank">nouvelle</a> vous glace le sang...</p>
 <pre><code language="language-Bash" class="language-Bash">FYSA, there&#39;s a trivially exploitable CVSS 10.0 vuln in a VERY popular JS library
  resulting in arbitrary command execution that has POCs in the wild.
@@ -955,7 +974,7 @@ and the repository exists.
 Happy Friday to everyone - enjoy your weekend if you can,
 I suspect this will be big next week...
 </code></pre>
-<p>Votre CTO ainsi que votre CEO s&#39;inquiètent.. À la veille du <a href="https://www.snowcamp.io/" target="_blank">Snowcamp2024</a> et de sa grande plénière, où votre startup fera son show devant 2950 participants durant une session live coding: Est-ce que votre startup est-elle vulnérable à cette faille majeure, pouvant mettre en péril cette démo importante, devant des passionnés de la Tech ainsi que la presse ?</p>
+<p>Votre CTO ainsi que votre CEO s&#39;inquiètent.. À la veille du <a href="https://www.sunnytech.io/" target="_blank">SunnyTech2024</a> et de sa grande plénière, où votre startup fera son show devant 2950 participants durant une session live coding: Est-ce que votre startup est-elle vulnérable à cette faille majeure, pouvant mettre en péril cette démo importante, devant des passionnés de la Tech ainsi que la presse ?</p>
 <p><strong>Objectifs de cette étape</strong>:</p>
 <ul>
 <li>Analyser le language et la librairie impactée (trop facile)</li>
@@ -1071,6 +1090,8 @@ spec:
 <li><a href="https://www.youtube.com/watch?v=hseEfxCHzYw" target="_blank">Scrubing Github History of Sensitive Data</a></li>
 <li><a href="https://www.youtube.com/watch?v=W6J6UipVNGA&list=PLWnens-FYbIpUpmiiNYfkqTZQUYppGMFV" target="_blank">Anais Urlichs, #100 Days Of Kubernetes</a> Kubernetes Security through GitOps <a href="(https://www.youtube.com/watch?v=YvMY8to9aHI)" target="_blank">Best Practices: ArgoCD and Starboard</a></li>
 <li><a href="https://vincent.bernat.ch/fr/blog/2023-akvorado-ddos-flowspec" target="_blank">DDOS detection</a></li>
+<li><a href="https://youtu.be/u9dBGWVwMMA?" target="_blank">NetworkChuck - ZPhisher/blackeye: Phishing attacks are SCARY easy to do!! (let me show you!)</a></li>
+<li><a href="https://www.youtube.com/@Secureaks" target="_blank">Chaîne YouTube: Secureaks - Pentest et cybersécurité</a></li>
 </ul>
 
 
