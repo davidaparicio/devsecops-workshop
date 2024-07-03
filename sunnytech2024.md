@@ -1041,7 +1041,7 @@ Nous vous souhaitons un excellent SunnyTech 2024 !! ;-D
 
 ![Lien OpenFeedBack](assets/feedback.png)
 
-S'il vous plaît, laissez-nous votre note et vos commentaires sur [OpenFeedBack](https://openfeedback.io/o7zyKdkdRulRnrtU3DZo/2024-01-31/d83195ad7c5a6422c2caf7d3d444e27c)
+S'il vous plaît, laissez-nous votre note et vos commentaires sur [OpenFeedBack](https://openfeedback.io/sunnytech2024/2024-07-04/la-securite-par-ou-commencer-i)
 
 ## E1 - Utip
 Duration: 5
