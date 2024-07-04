@@ -95,12 +95,12 @@ To be able to execute 42Crunch tools you must have an account in the platform. Y
 
 ## Workshop 1 : Static Analysis [Audit] 
 
-Head over to the ./audit directory to complete this section of the workshop.
+Head over to the [./audit](https://github.com/davidaparicio/devsecops-workshop/blob/main/petstore/audit/README.md) directory to complete this section of the workshop.
 
 ## Workshop 2 : Dynamic Analysis [Scan]
 
-Navigate to the ./scan directory in order to work on this segment of the workshop.
+Navigate to the [./scan](https://github.com/davidaparicio/devsecops-workshop/blob/main/petstore/scan/README.md) directory in order to work on this segment of the workshop.
 
 ## Workshop 3 : Protection [FW]
 
-To protect the API, follow the readme file present in the 'fw' directory
+To protect the API, follow the [readme file](https://github.com/davidaparicio/devsecops-workshop/blob/main/petstore/fw/README.md) present in the 'fw' directory
