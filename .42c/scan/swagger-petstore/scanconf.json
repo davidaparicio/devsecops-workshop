@@ -51,7 +51,14 @@
         },
         "path-item-method-not-allowed-scan": {
           "httpStatusExpected": [
-            "400"
+            "400",
+            "404"
+          ]
+        },
+        "path-item-method-not-allowed-no-authn-scan": {
+          "httpStatusExpected": [
+            "400",
+            "404"
           ]
         },
         "authentication-swapping-bola": {

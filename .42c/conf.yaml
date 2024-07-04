@@ -1,3 +1,5 @@
 apis:
   petstore/petstore.json:
     alias: swagger-petstore
+  petstore/scan/petstoreInvalid.json:
+    alias: swagger-petstore1
