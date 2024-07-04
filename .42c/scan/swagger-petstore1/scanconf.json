@@ -26,7 +26,7 @@
     },
     "customizations": {
       "happyPaths": {
-        "retry": 3,
+        "retry": 1,
         "responsePolicy": {
           "httpStatusExpected": true,
           "mustBeConformant": true
@@ -47,12 +47,6 @@
             ]
           },
           "path-item-method-not-allowed-scan": {
-            "httpStatusExpected": [
-              "400",
-              "404"
-            ]
-          },
-          "path-item-method-not-allowed-no-authn-scan": {
             "httpStatusExpected": [
               "400",
               "404"

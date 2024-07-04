@@ -31,11 +31,7 @@
         "httpStatusExpected": true,
         "mustBeConformant": true
       },
-      "httpStatusExpected": [
-        "2XX",
-        "400",
-        "404"
-      ]
+      "httpStatusExpected": []
     },
     "tests": {
       "responsePolicy": {
@@ -890,8 +886,8 @@
               "mode": "json",
               "json": {
                 "isAdmin": false,
-                "password": "{{password}}",
-                "user": "{{user}}"
+                "password": "password",
+                "user": "sunnytech@sunny.com"
               }
             }
           }

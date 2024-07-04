@@ -38,7 +38,7 @@ Using the 42Crunch plugin, you can scan one operation at a time. We will concent
         {
             "isAdmin": false,
             "password": "helloWorld",
-            "user": "{{$random}}"
+            "user": "{{$randomFromSchema}}"
         }
         ```
     - Then in the 'Auth' tabs, set the CookieAdmin or ApiKeyAdmin with the value '65496ebe-6544-4e77-bb66-20b97f6994bb'
