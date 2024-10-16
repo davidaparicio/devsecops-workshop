@@ -36,7 +36,7 @@ Now it is time to test the firewall in the following section
 We will execute some curl script to assess the firewall's compliance with the API Specification.
 
 ```bash
-curl --insecure --location 'https://petstore-secured:4241/petstores' --header 'Content-Type: application/json' --header 'apikey: 65496ebe-6544-4e77-bb66-20b97f6994bb' --data '{"name":"sunnytech"}'
+curl --insecure --location 'https://petstore-secured:4241/petstores' --header 'Content-Type: application/json' --header 'apikey: 65496ebe-6544-4e77-bb66-20b97f6994bb' --data '{"name":"devfest"}'
 ```
 
 You should receive the following response from the API:
@@ -45,7 +45,7 @@ API Response:
 ```
 {
     "id": "234bf052-3848-4cc8-acd4-3f7403aae504",
-    "name": "sunnytech"
+    "name": "devfest"
 }
 ```
 
@@ -53,7 +53,7 @@ Let's attempt a request that deviates from the CreatePetstore operation's specif
 
 
 ```bash
-curl --insecure --location 'https://petstore-secured:4241/petstores' --header 'Content-Type: application/json' --header 'apikey: 65496ebe-6544-4e77-bb66-20b97f6994bb' --data '{"name":"sunnytech1"}'
+curl --insecure --location 'https://petstore-secured:4241/petstores' --header 'Content-Type: application/json' --header 'apikey: 65496ebe-6544-4e77-bb66-20b97f6994bb' --data '{"name":"devfest1"}'
 ```
 
 The API didn't generate an error; instead, the firewall blocked the request.
