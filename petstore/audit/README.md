@@ -25,7 +25,7 @@ There are two ways to run the Audit:
         - IntelliJ (https://plugins.jetbrains.com/plugin/14837-openapi-swagger-editor)
     - Create an IDE token in the page https://platform.42crunch.com/
     - Setup the extension in the IDE
-        - VSCode : Ctrl + Shift + P : Update platform credentials
+        - VSCode : Ctrl + Shift + P : '42Crunch: Update platform credentials'
     - Open an OpenAPI Specification file and click on the top right 42Crunch logo
 
 ![Documentation](images/before.png)
