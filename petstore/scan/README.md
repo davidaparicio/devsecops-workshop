@@ -73,7 +73,7 @@ Utilizing the UI scan is a more time-consuming process because it involves scann
 
     ```
     docker pull 42crunch/scand-agent:v2.0.1
-    docker run -e SCAN_TOKEN=<TOKEN> --network="host" 42crunch/scand-agent:v2.0.1
+    docker run -e SCAN42C_SECURITY_COOKIEADMIN=65496ebe-6544-4e77-bb66-20b97f6994bb -e SCAN42C_SECURITY_APIKEYADMIN=65496ebe-6544-4e77-bb66-20b97f6994bb -e SCAN_TOKEN=<TOKEN> --network="host" 42crunch/scand-agent:v2 
     ```
 
 - Back to the UI: Read the Scan report in the Scan report page
