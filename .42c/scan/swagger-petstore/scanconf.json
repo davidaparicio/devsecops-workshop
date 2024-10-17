@@ -140,6 +140,7 @@
           "key": "happy.path",
           "requests": [
             {
+              "fuzzing": true,
               "$ref": "#/operations/BadError/request",
               "expectedResponse": "default",
               "environment": {
@@ -290,6 +291,7 @@
           "key": "happy.path",
           "requests": [
             {
+              "fuzzing": true,
               "$ref": "#/operations/CreatePet/request",
               "expectedResponse": "400",
               "environment": {
@@ -418,7 +420,7 @@
               "json": {
                 "isAdmin": false,
                 "password": "burwrnkxoelukceysibvvnzczglgdwsztkjxvzgddzawtdkbrhntmicehvlkqmwvdokjhuf",
-                "user": "helloWorld@company.io"
+                "user": "{{$random}}"
               }
             }
           }
@@ -1178,9 +1180,11 @@
             "key": "happy.path",
             "requests": [
               {
-                "$ref": "#/operations/UserLogin/request"
+                "$ref": "#/operations/UserLogin/request",
+                "fuzzing": true
               }
-            ]
+            ],
+            "fuzzing": true
           }
         ]
       },
