@@ -1,1108 +1,1125 @@
 {
     "version": "2.0.0",
     "runtimeConfiguration": {
-      "environment": "default",
-      "logLevel": "info",
-      "logDestination": "stdout+platform",
-      "logMaxFileSize": 2147483648,
-      "requestHeaderNameRequestId": "x-scan-request-id",
-      "requestHeaderNameScenarioId": "x-scan-scenario-id",
-      "requestFlowrate": 10,
-      "requestTimeout": 30,
-      "requestTlsInsecureSkipVerify": true,
-      "responseFollowRedirection": true,
-      "happyPathOnly": false,
-      "maxScanDuration": 3600,
-      "memoryLimit": 2147483648,
-      "memoryTimeSpan": 10,
-      "responseMaxBodySizeScan": 10485760,
-      "reportMaxHttpResponseSizeHappyPath": 8092,
-      "reportMaxBodySizeHappyPath": 8092,
-      "reportMaxHttpResponseSizeTest": 8092,
-      "reportMaxBodySizeTest": 8092,
-      "reportIssuesOnly": true,
-      "reportMaxIssues": 10000,
-      "reportMaxSize": 104857600
+        "environment": "default",
+        "laxTestingModeEnabled": false,
+        "apiConnectivityCheck": true,
+        "logLevel": "error",
+        "logDestination": "stdout+platform",
+        "logMaxFileSize": 2147483648,
+        "requestHeaderNameRequestId": "x-scan-request-id",
+        "requestHeaderNameScenarioId": "x-scan-scenario-id",
+        "requestHeaderNameRequestType": "x-scan-request-type",
+        "requestFlowrate": 100,
+        "requestTimeout": 30,
+        "requestTlsInsecureSkipVerify": true,
+        "responseFollowRedirection": false,
+        "responseMaxBodySizeScan": 10485760,
+        "happyPathOnly": false,
+        "maxRequestRetryAttempts": 5,
+        "maxScanDuration": 1800,
+        "memoryLimit": 2147483648,
+        "memoryTimeSpan": 10,
+        "reportMaxRequestSizeHappyPath": 8092,
+        "reportMaxRequestSizeTest": 8092,
+        "reportIncludeRequestBody": true,
+        "reportIncludeResponseBody": true,
+        "reportMaxHttpResponseSizeHappyPath": 8092,
+        "reportMaxBodySizeHappyPath": 8092,
+        "reportMaxHttpResponseSizeTest": 8092,
+        "reportMaxBodySizeTest": 8092,
+        "reportIssuesOnly": false,
+        "reportMaxIssues": 1000,
+        "reportMaxSize": 20971520,
+        "reportGenerateCurlCommand": true
     },
     "customizations": {
-      "happyPaths": {
-        "retry": 1,
-        "responsePolicy": {
-          "httpStatusExpected": true,
-          "mustBeConformant": true
+        "happyPaths": {
+            "retry": 1,
+            "responsePolicy": {
+                "httpStatusExpected": true,
+                "mustBeConformant": true
+            },
+            "httpStatusExpected": []
         },
-        "httpStatusExpected": [
-        ]
-      },
-      "tests": {
-        "responsePolicy": {
-          "httpStatusExpected": true,
-          "mustBeConformant": true
-        },
-        "responseAnalysisBehavior": {
-          "parameter-required-scan": {
-            "httpStatusExpected": [
-              "400",
-              "404"
-            ]
-          },
-          "path-item-method-not-allowed-scan": {
-            "httpStatusExpected": [
-              "400",
-              "404"
-            ]
-          },
-          "authentication-swapping-bola": {
-            "httpStatusExpected": [
-              "401",
-              "403"
-            ]
-          },
-          "authentication-swapping-bfla": {
-            "httpStatusExpected": [
-              "401",
-              "403"
-            ]
-          }
+        "tests": {
+            "responsePolicy": {
+                "httpStatusExpected": true,
+                "mustBeConformant": true
+            }
         }
-      }
-    },
-    "environments": {
-      "default": {
-        "variables": {
-          "host": {
-            "name": "SCAN42C_HOST",
-            "from": "environment",
-            "required": false,
-            "default": "http://localhost:4010"
-          }
-        }
-      }
-    },
-    "operations": {
-      "CreatePetstore": {
-        "operationId": "CreatePetstore",
-        "request": {
-          "operationId": "CreatePetstore",
-          "auth": [
-            "AdminCookie"
-          ],
-          "request": {
-            "type": "42c",
-            "details": {
-              "operationId": "CreatePetstore",
-              "method": "POST",
-              "url": "{{host}}/petstores",
-              "headers": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "requestBody": {
-                "mode": "json",
-                "json": {
-                  "name": "{{petstoreName}}"
-                }
-              }
-            }
-          },
-          "defaultResponse": "200",
-          "environment": {
-            "petstoreName": "{{$random}}"
-          },
-          "responses": {
-            "200": {
-              "expectations": {
-                "httpStatus": 200
-              },
-              "variableAssignments": {
-                "petstoreId": {
-                  "in": "body",
-                  "from": "response",
-                  "contentType": "json",
-                  "path": {
-                    "type": "jsonPointer",
-                    "value": "/id"
-                  }
-                }
-              }
-            },
-            "400": {
-              "expectations": {
-                "httpStatus": 400
-              }
-            },
-            "default": {
-              "expectations": {
-                "httpStatus": "default"
-              }
-            }
-          }
-        },
-        "scenarios": [
-          {
-            "key": "happy.path",
-            "requests": [
-              {
-                "fuzzing": true,
-                "$ref": "#/operations/CreatePetstore/request"
-              },
-              {
-                "$ref": "#/operations/DeletePetstore/request"
-              }
-            ],
-            "fuzzing": true
-          },
-          {
-            "key": "happy.path",
-            "requests": [
-              {
-                "fuzzing": true,
-                "$ref": "#/operations/CreatePetstore/request",
-                "expectedResponse": "400",
-                "environment": {
-                  "petstoreName": 123
-                }
-              }
-            ]
-          }
-        ],
-        "customTests": [],
-        "authorizationTests": [
-          "AdminOnly"
-        ]
-      },
-      "ReadPetstore": {
-        "operationId": "ReadPetstore",
-        "request": {
-          "operationId": "ReadPetstore",
-          "auth": [
-            "UserCookie"
-          ],
-          "request": {
-            "type": "42c",
-            "details": {
-              "operationId": "ReadPetstore",
-              "method": "GET",
-              "url": "{{host}}/petstores/{id}",
-              "headers": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "paths": [
-                {
-                  "key": "id",
-                  "value": "{{petstoreId}}"
-                }
-              ]
-            }
-          },
-          "defaultResponse": "200",
-          "responses": {
-            "200": {
-              "expectations": {
-                "httpStatus": 200
-              }
-            }
-          }
-        },
-        "before": [
-          {
-            "$ref": "#/operations/CreatePetstore/request"
-          }
-        ],
-        "after": [
-          {
-            "$ref": "#/operations/DeletePetstore/request"
-          }
-        ],
-        "scenarios": [
-          {
-            "key": "happy.path",
-            "requests": [
-              {
-                "fuzzing": true,
-                "$ref": "#/operations/ReadPetstore/request"
-              }
-            ],
-            "fuzzing": true
-          }
-        ],
-        "customTests": []
-      },
-      "DeletePetstore": {
-        "operationId": "DeletePetstore",
-        "request": {
-          "operationId": "DeletePetstore",
-          "auth": [
-            "AdminCookie"
-          ],
-          "request": {
-            "type": "42c",
-            "details": {
-              "operationId": "DeletePetstore",
-              "method": "DELETE",
-              "url": "{{host}}/petstores/{id}",
-              "headers": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "paths": [
-                {
-                  "key": "id",
-                  "value": "{{petstoreId}}"
-                }
-              ]
-            }
-          },
-          "defaultResponse": "204",
-          "responses": {
-            "204": {
-              "expectations": {
-                "httpStatus": 204
-              }
-            },
-            "default": {
-              "expectations": {
-                "httpStatus": "default"
-              }
-            }
-          }
-        },
-        "scenarios": [
-          {
-            "key": "happy.path",
-            "requests": [
-              {
-                "$ref": "#/operations/CreatePetstore/request"
-              },
-              {
-                "fuzzing": true,
-                "$ref": "#/operations/DeletePetstore/request"
-              }
-            ],
-            "fuzzing": true
-          }
-        ],
-        "customTests": [],
-        "authorizationTests": [
-          "AdminOnly"
-        ]
-      },
-      "FindPetstores": {
-        "operationId": "FindPetstores",
-        "request": {
-          "operationId": "FindPetstores",
-          "auth": [
-            "AdminCookie"
-          ],
-          "request": {
-            "type": "42c",
-            "details": {
-              "operationId": "FindPetstores",
-              "method": "GET",
-              "url": "{{host}}/petstores",
-              "headers": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "queries": [
-                {
-                  "key": "limit",
-                  "value": 10
-                },
-                {
-                  "key": "name",
-                  "value": "Petstore"
-                }
-              ]
-            }
-          },
-          "defaultResponse": "200",
-          "responses": {
-            "200": {
-              "expectations": {
-                "httpStatus": 200
-              }
-            }
-          }
-        },
-        "before": [
-          {
-            "$ref": "#/operations/CreatePetstore/request"
-          }
-        ],
-        "after": [
-          {
-            "$ref": "#/operations/DeletePetstore/request"
-          }
-        ],
-        "scenarios": [
-          {
-            "key": "happy.path",
-            "requests": [
-              {
-                "fuzzing": true,
-                "$ref": "#/operations/FindPetstores/request"
-              }
-            ],
-            "fuzzing": true
-          }
-        ],
-        "customTests": []
-      },
-      "ListPets": {
-        "operationId": "ListPets",
-        "request": {
-          "operationId": "ListPets",
-          "auth": [
-            "UserCookie"
-          ],
-          "request": {
-            "type": "42c",
-            "details": {
-              "operationId": "ListPets",
-              "method": "GET",
-              "url": "{{host}}/petstores/{id}/pets",
-              "headers": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "paths": [
-                {
-                  "key": "id",
-                  "value": "{{petstoreId}}"
-                }
-              ]
-            }
-          },
-          "defaultResponse": "200",
-          "responses": {
-            "200": {
-              "expectations": {
-                "httpStatus": 200
-              }
-            }
-          }
-        },
-        "before": [
-          {
-            "$ref": "#/operations/CreatePetstore/request"
-          },
-          {
-            "$ref": "#/operations/CreatePet/request"
-          }
-        ],
-        "after": [
-          {
-            "$ref": "#/operations/DeletePetstore/request"
-          }
-        ],
-        "scenarios": [
-          {
-            "key": "happy.path",
-            "requests": [
-              {
-                "fuzzing": true,
-                "$ref": "#/operations/ListPets/request"
-              }
-            ],
-            "fuzzing": true
-          }
-        ],
-        "customTests": []
-      },
-      "ReadPet": {
-        "operationId": "ReadPet",
-        "request": {
-          "operationId": "ReadPet",
-          "auth": [
-            "UserCookie"
-          ],
-          "request": {
-            "type": "42c",
-            "details": {
-              "operationId": "ReadPet",
-              "method": "GET",
-              "url": "{{host}}/pets/{id}",
-              "headers": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "paths": [
-                {
-                  "key": "id",
-                  "value": "{{petId}}"
-                }
-              ]
-            }
-          },
-          "defaultResponse": "200",
-          "responses": {
-            "200": {
-              "expectations": {
-                "httpStatus": 200
-              }
-            }
-          }
-        },
-        "before": [
-          {
-            "$ref": "#/operations/CreatePetstore/request"
-          },
-          {
-            "$ref": "#/operations/CreatePet/request"
-          }
-        ],
-        "after": [
-          {
-            "$ref": "#/operations/DeletePet/request"
-          },
-          {
-            "$ref": "#/operations/DeletePetstore/request"
-          }
-        ],
-        "scenarios": [
-          {
-            "key": "happy.path",
-            "requests": [
-              {
-                "fuzzing": true,
-                "$ref": "#/operations/ReadPet/request"
-              }
-            ],
-            "fuzzing": true
-          }
-        ],
-        "customTests": [],
-        "authorizationTests": [
-          "UserIsolation"
-        ]
-      },
-      "CreatePet": {
-        "operationId": "CreatePet",
-        "request": {
-          "operationId": "CreatePet",
-          "auth": [
-            "UserCookie"
-          ],
-          "request": {
-            "type": "42c",
-            "details": {
-              "operationId": "CreatePet",
-              "method": "POST",
-              "url": "{{host}}/pets",
-              "headers": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "requestBody": {
-                "mode": "json",
-                "json": {
-                  "age": 10,
-                  "name": "Billy",
-                  "petstoreId": "{{petstoreId}}",
-                  "type": "Cat"
-                }
-              }
-            }
-          },
-          "defaultResponse": "200",
-          "responses": {
-            "200": {
-              "expectations": {
-                "httpStatus": 200
-              },
-              "variableAssignments": {
-                "petId": {
-                  "in": "body",
-                  "from": "response",
-                  "contentType": "json",
-                  "path": {
-                    "type": "jsonPath",
-                    "value": "$.id"
-                  }
-                }
-              }
-            },
-            "400": {
-              "expectations": {
-                "httpStatus": 400
-              }
-            },
-            "failure": {
-              "expectations": {
-                "httpStatus": "default"
-              }
-            }
-          }
-        },
-        "before": [
-          {
-            "$ref": "#/operations/CreatePetstore/request"
-          }
-        ],
-        "after": [
-          {
-            "$ref": "#/operations/DeletePetstore/request"
-          }
-        ],
-        "scenarios": [
-          {
-            "key": "happy.path",
-            "requests": [
-              {
-                "fuzzing": true,
-                "$ref": "#/operations/CreatePet/request"
-              },
-              {
-                "$ref": "#/operations/DeletePet/request"
-              }
-            ],
-            "fuzzing": true
-          },
-          {
-            "key": "happy.path",
-            "requests": [
-              {
-                "$ref": "#/operations/CreatePet/request",
-                "expectedResponse": "400",
-                "environment": {
-                  "petstoreId": 123
-                }
-              }
-            ]
-          }
-        ],
-        "customTests": []
-      },
-      "TransferPet": {
-        "operationId": "TransferPet",
-        "request": {
-          "operationId": "TransferPet",
-          "auth": [
-            "UserCookie"
-          ],
-          "request": {
-            "type": "42c",
-            "details": {
-              "operationId": "TransferPet",
-              "method": "PUT",
-              "url": "{{host}}/pets/{id}/transfer",
-              "headers": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "paths": [
-                {
-                  "key": "id",
-                  "value": "{{petId}}"
-                }
-              ],
-              "requestBody": {
-                "mode": "json",
-                "json": {
-                  "petstoreId": "{{newPetstoreId}}"
-                }
-              }
-            }
-          },
-          "defaultResponse": "200",
-          "responses": {
-            "200": {
-              "expectations": {
-                "httpStatus": 200
-              }
-            }
-          }
-        },
-        "before": [
-          {
-            "$ref": "#/operations/CreatePetstore/request",
-            "environment": {
-              "petstoreName": "{{$random}}"
-            }
-          },
-          {
-            "$ref": "#/operations/CreatePetstore/request",
-            "environment": {
-              "newPetstoreId": "{{petstoreId}}",
-              "name": "{{$random}}"
-            }
-          }
-        ],
-        "after": [
-          {
-            "$ref": "#/operations/DeletePetstore/request"
-          },
-          {
-            "$ref": "#/operations/DeletePetstore/request",
-            "environment": {
-              "petstoreId": "{{newPetstoreId}}"
-            }
-          }
-        ],
-        "scenarios": [
-          {
-            "key": "happy.path",
-            "requests": [
-              {
-                "$ref": "#/operations/CreatePet/request"
-              },
-              {
-                "$ref": "#/operations/ReadPet/request"
-              },
-              {
-                "fuzzing": true,
-                "$ref": "#/operations/TransferPet/request"
-              },
-              {
-                "$ref": "#/operations/DeletePet/request"
-              }
-            ],
-            "fuzzing": true
-          }
-        ],
-        "customTests": [],
-        "authorizationTests": [
-          "UserIsolation"
-        ]
-      },
-      "DeletePet": {
-        "operationId": "DeletePet",
-        "request": {
-          "operationId": "DeletePet",
-          "auth": [
-            "UserCookie"
-          ],
-          "request": {
-            "type": "42c",
-            "details": {
-              "operationId": "DeletePet",
-              "method": "DELETE",
-              "url": "{{host}}/pets/{id}",
-              "headers": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "paths": [
-                {
-                  "key": "id",
-                  "value": "{{petId}}"
-                }
-              ]
-            }
-          },
-          "defaultResponse": "204",
-          "responses": {
-            "204": {
-              "expectations": {
-                "httpStatus": 204
-              }
-            },
-            "default": {
-              "expectations": {
-                "httpStatus": "default"
-              }
-            }
-          }
-        },
-        "before": [
-          {
-            "$ref": "#/operations/CreatePetstore/request"
-          }
-        ],
-        "after": [
-          {
-            "$ref": "#/operations/DeletePetstore/request"
-          }
-        ],
-        "scenarios": [
-          {
-            "key": "happy.path",
-            "requests": [
-              {
-                "$ref": "#/operations/CreatePet/request"
-              },
-              {
-                "fuzzing": true,
-                "$ref": "#/operations/DeletePet/request"
-              }
-            ],
-            "fuzzing": true
-          }
-        ],
-        "customTests": []
-      },
-      "UserLogin": {
-        "operationId": "UserLogin",
-        "request": {
-          "operationId": "UserLogin",
-          "request": {
-            "type": "42c",
-            "details": {
-              "operationId": "UserLogin",
-              "method": "POST",
-              "url": "{{host}}/login",
-              "headers": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "requestBody": {
-                "mode": "json",
-                "json": {
-                  "password": "{{password}}",
-                  "user": "{{user}}"
-                }
-              }
-            }
-          },
-          "defaultResponse": "200",
-          "environment": {
-            "password": "HelloWorld",
-            "user": "user@42crunch.com"
-          },
-          "responses": {
-            "200": {
-              "expectations": {
-                "httpStatus": 200
-              },
-              "variableAssignments": {
-                "sessionId": {
-                  "in": "cookie",
-                  "from": "response",
-                  "name": "session"
-                }
-              }
-            }
-          }
-        },
-        "scenarios": [
-          {
-            "key": "happy.path",
-            "requests": [
-              {
-                "$ref": "#/operations/UserLogin/request"
-              }
-            ]
-          }
-        ]
-      },
-      "UserLoginUrlencoded": {
-        "operationId": "UserLoginUrlencoded",
-        "request": {
-          "operationId": "UserLoginUrlencoded",
-          "request": {
-            "type": "42c",
-            "details": {
-              "operationId": "UserLoginUrlencoded",
-              "method": "POST",
-              "url": "{{host}}/login/urlencoded",
-              "headers": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/x-www-form-urlencoded"
-                }
-              ],
-              "requestBody": {
-                "mode": "urlencoded",
-                "urlencoded": {
-                  "password": {
-                    "value": "HelloWorld"
-                  },
-                  "user": {
-                    "value": "user1@42crunch.com"
-                  }
-                }
-              }
-            }
-          },
-          "defaultResponse": "200",
-          "responses": {
-            "200": {
-              "expectations": {
-                "httpStatus": 200
-              }
-            }
-          }
-        },
-        "scenarios": [
-          {
-            "key": "happy.path",
-            "requests": [
-              {
-                "fuzzing": true,
-                "$ref": "#/operations/UserLoginUrlencoded/request"
-              }
-            ],
-            "fuzzing": true
-          }
-        ]
-      },
-      "CreateUser": {
-        "operationId": "CreateUser",
-        "request": {
-          "operationId": "CreateUser",
-          "auth": [
-            "AdminCookie"
-          ],
-          "request": {
-            "type": "42c",
-            "details": {
-              "operationId": "CreateUser",
-              "method": "POST",
-              "url": "{{host}}/users",
-              "headers": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "requestBody": {
-                "mode": "json",
-                "json": {
-                  "isAdmin": false,
-                  "password": "{{password}}",
-                  "user": "{{user}}"
-                }
-              }
-            }
-          },
-          "defaultResponse": "200",
-          "responses": {
-            "200": {
-              "expectations": {
-                "httpStatus": 200
-              },
-              "variableAssignments": {
-                "password": {
-                  "in": "body",
-                  "from": "response",
-                  "contentType": "json",
-                  "path": {
-                    "type": "jsonPath",
-                    "value": "$.password"
-                  }
-                },
-                "user": {
-                  "in": "body",
-                  "from": "response",
-                  "contentType": "json",
-                  "path": {
-                    "type": "jsonPath",
-                    "value": "$.user"
-                  }
-                }
-              }
-            },
-            "400": {
-              "expectations": {
-                "httpStatus": 400
-              }
-            },
-            "default": {
-              "expectations": {
-                "httpStatus": "default"
-              }
-            }
-          }
-        },
-        "scenarios": [
-          {
-            "key": "happy.path",
-            "requests": [
-              {
-                "fuzzing": true,
-                "$ref": "#/operations/CreateUser/request",
-                "environment": {
-                  "password": "{{$randomFromSchema}}",
-                  "user": "{{$randomFromSchema}}"
-                }
-              }
-            ],
-            "fuzzing": true
-          },
-          {
-            "key": "happy.path",
-            "requests": [
-              {
-                "$ref": "#/operations/CreateUser/request",
-                "expectedResponse": "400",
-                "environment": {
-                  "password": "{{$random}}",
-                  "user": 10
-                }
-              }
-            ]
-          }
-        ],
-        "customTests": []
-      },
-      "BadError": {
-        "operationId": "BadError",
-        "request": {
-          "operationId": "BadError",
-          "request": {
-            "type": "42c",
-            "details": {
-              "operationId": "BadError",
-              "method": "POST",
-              "url": "{{host}}/badError",
-              "headers": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "requestBody": {
-                "mode": "json",
-                "json": {
-                  "error": "{{error}}"
-                }
-              }
-            }
-          },
-          "defaultResponse": "200",
-          "responses": {
-            "200": {
-              "expectations": {
-                "httpStatus": 200
-              }
-            },
-            "default": {
-              "expectations": {
-                "httpStatus": "default"
-              }
-            }
-          }
-        },
-        "scenarios": [
-          {
-            "key": "happy.path",
-            "requests": [
-              {
-                "fuzzing": true,
-                "$ref": "#/operations/BadError/request",
-                "environment": {
-                  "error": 200
-                }
-              }
-            ],
-            "fuzzing": true
-          },
-          {
-            "key": "happy.path",
-            "requests": [
-              {
-                "$ref": "#/operations/BadError/request",
-                "expectedResponse": "default",
-                "environment": {
-                  "error": 409
-                }
-              }
-            ]
-          }
-        ]
-      }
     },
     "authenticationDetails": [
-      {
-        "AdminCookie": {
-          "type": "apiKey",
-          "in": "cookie",
-          "name": "session",
-          "ttl": "30s",
-          "default": "Admin",
-          "credentials": {
-            "Admin": {
-              "credential": "{{sessionId}}",
-              "description": "Admin Credential",
-              "requests": [
-                {
-                  "$ref": "#/operations/UserLogin/request",
-                  "environment": {
-                    "password": "HelloWorld",
-                    "user": "admin@42crunch.com"
-                  }
+        {
+            "ApiKeyAdmin": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "apikey",
+                "default": "ApiKeyAdmin",
+                "credentials": {
+                    "ApiKeyAdmin": {
+                        "description": "ApiKeyAdmin security",
+                        "credential": "{{ApiKeyAdmin}}"
+                    }
                 }
-              ]
-            }
-          }
-        },
-        "UserCookie": {
-          "type": "apiKey",
-          "in": "cookie",
-          "name": "session",
-          "ttl": "30s",
-          "default": "User",
-          "credentials": {
-            "User": {
-              "credential": "{{sessionId}}",
-              "description": "User Credential",
-              "requests": [
-                {
-                  "$ref": "#/operations/UserLogin/request",
-                  "environment": {
-                    "password": "HelloWorld",
-                    "user": "user@42crunch.com"
-                  }
-                }
-              ]
             },
-            "User1": {
-              "credential": "{{sessionId}}",
-              "description": "User Credential",
-              "requests": [
-                {
-                  "$ref": "#/operations/UserLogin/request",
-                  "environment": {
-                    "password": "HelloWorld",
-                    "user": "user1@42crunch.com"
-                  }
+            "ApiKeyUser": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "apikey",
+                "default": "ApiKeyUser",
+                "credentials": {
+                    "ApiKeyUser": {
+                        "description": "ApiKeyUser security",
+                        "credential": "{{ApiKeyUser}}"
+                    }
                 }
-              ]
+            },
+            "CookieAdmin": {
+                "type": "apiKey",
+                "in": "cookie",
+                "name": "session",
+                "default": "CookieAdmin",
+                "credentials": {
+                    "CookieAdmin": {
+                        "description": "CookieAdmin security",
+                        "credential": "{{CookieAdmin}}"
+                    }
+                }
+            },
+            "CookieUser": {
+                "type": "apiKey",
+                "in": "cookie",
+                "name": "session",
+                "default": "CookieUser",
+                "credentials": {
+                    "CookieUser": {
+                        "description": "CookieUser security",
+                        "credential": "{{CookieUser}}"
+                    }
+                }
             }
-          }
         }
-      }
     ],
-    "authorizationTests": {
-      "UserIsolation": {
-        "key": "authentication-swapping-bola",
-        "source": [
-          "UserCookie/User"
-        ],
-        "target": [
-          "UserCookie/User1"
-        ]
-      },
-      "AdminOnly": {
-        "key": "authentication-swapping-bfla",
-        "source": [
-          "AdminCookie/Admin"
-        ],
-        "target": [
-          "UserCookie/User"
-        ]
-      }
+    "operations": {
+        "BadError": {
+            "operationId": "BadError",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/BadError/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "BadError",
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/badError",
+                        "method": "POST",
+                        "headers": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "requestBody": {
+                            "mode": "json",
+                            "json": {
+                                "error": 5080333879450503051
+                            }
+                        }
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    },
+                    "204": {
+                        "expectations": {
+                            "httpStatus": 204
+                        }
+                    }
+                }
+            }
+        },
+        "CreateApikey": {
+            "operationId": "CreateApikey",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/CreateApikey/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "CreateApikey",
+                "auth": [
+                    "CookieAdmin"
+                ],
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/apikey",
+                        "method": "POST"
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    },
+                    "400": {
+                        "expectations": {
+                            "httpStatus": 400
+                        }
+                    },
+                    "401": {
+                        "expectations": {
+                            "httpStatus": 401
+                        }
+                    },
+                    "default": {
+                        "expectations": {
+                            "httpStatus": "default"
+                        }
+                    }
+                }
+            }
+        },
+        "CreatePet": {
+            "operationId": "CreatePet",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/CreatePet/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "CreatePet",
+                "auth": [
+                    "CookieAdmin"
+                ],
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/pets",
+                        "method": "POST",
+                        "headers": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "requestBody": {
+                            "mode": "json",
+                            "json": {
+                                "age": 10,
+                                "name": "Billy",
+                                "petstoreId": "7fd1b0b3-d0fc-4986-abe8-e92742d42644"
+                            }
+                        }
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    },
+                    "400": {
+                        "expectations": {
+                            "httpStatus": 400
+                        }
+                    },
+                    "default": {
+                        "expectations": {
+                            "httpStatus": "default"
+                        }
+                    }
+                }
+            }
+        },
+        "CreatePetstore": {
+            "operationId": "CreatePetstore",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/CreatePetstore/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "CreatePetstore",
+                "auth": [
+                    "ApiKeyAdmin"
+                ],
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/petstores",
+                        "method": "POST",
+                        "headers": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "requestBody": {
+                            "mode": "json",
+                            "json": {
+                                "name": "Petstore"
+                            }
+                        }
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    },
+                    "400": {
+                        "expectations": {
+                            "httpStatus": 400
+                        }
+                    },
+                    "default": {
+                        "expectations": {
+                            "httpStatus": "default"
+                        }
+                    }
+                }
+            }
+        },
+        "CreateUser": {
+            "operationId": "CreateUser",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/CreateUser/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "CreateUser",
+                "auth": [
+                    "CookieAdmin"
+                ],
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/users",
+                        "method": "POST",
+                        "headers": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "requestBody": {
+                            "mode": "json",
+                            "json": {
+                                "isAdmin": false,
+                                "password": "ubmukksffpdeuttwqbfxkszgzt",
+                                "user": "helloWorld@company.io"
+                            }
+                        }
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    },
+                    "400": {
+                        "expectations": {
+                            "httpStatus": 400
+                        }
+                    },
+                    "401": {
+                        "expectations": {
+                            "httpStatus": 401
+                        }
+                    },
+                    "default": {
+                        "expectations": {
+                            "httpStatus": "default"
+                        }
+                    }
+                }
+            }
+        },
+        "DeleteApikey": {
+            "operationId": "DeleteApikey",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/DeleteApikey/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "DeleteApikey",
+                "auth": [
+                    "CookieAdmin"
+                ],
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/apikey/{id}",
+                        "method": "DELETE",
+                        "paths": [
+                            {
+                                "key": "id",
+                                "value": "7fd1b0b3-d0fc-4986-abe8-e92742d42644"
+                            }
+                        ]
+                    }
+                },
+                "defaultResponse": "204",
+                "responses": {
+                    "204": {
+                        "expectations": {
+                            "httpStatus": 204
+                        }
+                    },
+                    "400": {
+                        "expectations": {
+                            "httpStatus": 400
+                        }
+                    },
+                    "401": {
+                        "expectations": {
+                            "httpStatus": 401
+                        }
+                    },
+                    "default": {
+                        "expectations": {
+                            "httpStatus": "default"
+                        }
+                    }
+                }
+            }
+        },
+        "DeletePet": {
+            "operationId": "DeletePet",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/DeletePet/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "DeletePet",
+                "auth": [
+                    "CookieAdmin"
+                ],
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/pets/{id}",
+                        "method": "DELETE",
+                        "paths": [
+                            {
+                                "key": "id",
+                                "value": "7fd1b0b3-d0fc-4986-abe8-e92742d42644"
+                            }
+                        ]
+                    }
+                },
+                "defaultResponse": "204",
+                "responses": {
+                    "204": {
+                        "expectations": {
+                            "httpStatus": 204
+                        }
+                    },
+                    "400": {
+                        "expectations": {
+                            "httpStatus": 400
+                        }
+                    },
+                    "default": {
+                        "expectations": {
+                            "httpStatus": "default"
+                        }
+                    }
+                }
+            }
+        },
+        "DeletePetstore": {
+            "operationId": "DeletePetstore",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/DeletePetstore/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "DeletePetstore",
+                "auth": [
+                    "ApiKeyAdmin"
+                ],
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/petstores/{id}",
+                        "method": "DELETE",
+                        "paths": [
+                            {
+                                "key": "id",
+                                "value": "7fd1b0b3-d0fc-4986-abe8-e92742d42644"
+                            }
+                        ]
+                    }
+                },
+                "defaultResponse": "204",
+                "responses": {
+                    "204": {
+                        "expectations": {
+                            "httpStatus": 204
+                        }
+                    },
+                    "400": {
+                        "expectations": {
+                            "httpStatus": 400
+                        }
+                    },
+                    "default": {
+                        "expectations": {
+                            "httpStatus": "default"
+                        }
+                    }
+                }
+            }
+        },
+        "DeleteUser": {
+            "operationId": "DeleteUser",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/DeleteUser/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "DeleteUser",
+                "auth": [
+                    "CookieAdmin"
+                ],
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/users/{username}",
+                        "method": "DELETE"
+                    }
+                },
+                "defaultResponse": "204",
+                "responses": {
+                    "204": {
+                        "expectations": {
+                            "httpStatus": 204
+                        }
+                    },
+                    "400": {
+                        "expectations": {
+                            "httpStatus": 400
+                        }
+                    },
+                    "401": {
+                        "expectations": {
+                            "httpStatus": 401
+                        }
+                    },
+                    "default": {
+                        "expectations": {
+                            "httpStatus": "default"
+                        }
+                    }
+                }
+            }
+        },
+        "Dump": {
+            "operationId": "Dump",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/Dump/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "Dump",
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/dump",
+                        "method": "GET"
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    }
+                }
+            }
+        },
+        "FindPetstores": {
+            "operationId": "FindPetstores",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/FindPetstores/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "FindPetstores",
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/petstores",
+                        "method": "GET"
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    },
+                    "400": {
+                        "expectations": {
+                            "httpStatus": 400
+                        }
+                    },
+                    "default": {
+                        "expectations": {
+                            "httpStatus": "default"
+                        }
+                    }
+                }
+            }
+        },
+        "ListPets": {
+            "operationId": "ListPets",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/ListPets/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "ListPets",
+                "auth": [
+                    "CookieAdmin"
+                ],
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/petstores/{id}/pets",
+                        "method": "GET",
+                        "paths": [
+                            {
+                                "key": "id",
+                                "value": "7fd1b0b3-d0fc-4986-abe8-e92742d42644"
+                            }
+                        ]
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    },
+                    "400": {
+                        "expectations": {
+                            "httpStatus": 400
+                        }
+                    },
+                    "default": {
+                        "expectations": {
+                            "httpStatus": "default"
+                        }
+                    }
+                }
+            }
+        },
+        "ReadPet": {
+            "operationId": "ReadPet",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/ReadPet/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "ReadPet",
+                "auth": [
+                    "CookieAdmin"
+                ],
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/pets/{id}",
+                        "method": "GET",
+                        "paths": [
+                            {
+                                "key": "id",
+                                "value": "7fd1b0b3-d0fc-4986-abe8-e92742d42644"
+                            }
+                        ]
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    },
+                    "400": {
+                        "expectations": {
+                            "httpStatus": 400
+                        }
+                    },
+                    "default": {
+                        "expectations": {
+                            "httpStatus": "default"
+                        }
+                    }
+                }
+            }
+        },
+        "ReadPetstore": {
+            "operationId": "ReadPetstore",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/ReadPetstore/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "ReadPetstore",
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/petstores/{id}",
+                        "method": "GET",
+                        "paths": [
+                            {
+                                "key": "id",
+                                "value": "7fd1b0b3-d0fc-4986-abe8-e92742d42644"
+                            }
+                        ]
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    },
+                    "400": {
+                        "expectations": {
+                            "httpStatus": 400
+                        }
+                    },
+                    "default": {
+                        "expectations": {
+                            "httpStatus": "default"
+                        }
+                    }
+                }
+            }
+        },
+        "Redirect": {
+            "operationId": "Redirect",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/Redirect/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "Redirect",
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/redirect",
+                        "method": "GET"
+                    }
+                },
+                "defaultResponse": "302",
+                "responses": {
+                    "302": {
+                        "expectations": {
+                            "httpStatus": 302
+                        }
+                    },
+                    "default": {
+                        "expectations": {
+                            "httpStatus": "default"
+                        }
+                    }
+                }
+            }
+        },
+        "TransferPet": {
+            "operationId": "TransferPet",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/TransferPet/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "TransferPet",
+                "auth": [
+                    "CookieAdmin"
+                ],
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/pets/{id}/transfer",
+                        "method": "PUT",
+                        "headers": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "requestBody": {
+                            "mode": "json",
+                            "json": {
+                                "petstoreId": "7fd1b0b3-d0fc-4986-abe8-e92742d42644"
+                            }
+                        }
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    },
+                    "400": {
+                        "expectations": {
+                            "httpStatus": 400
+                        }
+                    },
+                    "default": {
+                        "expectations": {
+                            "httpStatus": "default"
+                        }
+                    }
+                }
+            }
+        },
+        "UserLogin": {
+            "operationId": "UserLogin",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/UserLogin/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "UserLogin",
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/login",
+                        "method": "POST",
+                        "headers": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "requestBody": {
+                            "mode": "json",
+                            "json": {
+                                "password": "z0X_eI7WfPbvJUAsXW67m1DFsJ SxPD5-fGeBRtYlYG5ffV",
+                                "user": "helloWorld@company.io"
+                            }
+                        }
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    },
+                    "400": {
+                        "expectations": {
+                            "httpStatus": 400
+                        }
+                    },
+                    "401": {
+                        "expectations": {
+                            "httpStatus": 401
+                        }
+                    },
+                    "default": {
+                        "expectations": {
+                            "httpStatus": "default"
+                        }
+                    }
+                }
+            }
+        },
+        "UserLoginUrlencoded": {
+            "operationId": "UserLoginUrlencoded",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/UserLoginUrlencoded/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "UserLoginUrlencoded",
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/login/urlencoded",
+                        "method": "POST",
+                        "headers": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded"
+                            }
+                        ],
+                        "requestBody": {
+                            "mode": "urlencoded",
+                            "urlencoded": {
+                                "password": {
+                                    "value": "3-C27126a  9zltPqST3ViLBZQZHbC5gitNGIpcYHbQkmz_0dY1_mCNTx1cEj-8RMMDmUOi_INdy-4tCMZUiaW108"
+                                },
+                                "user": {
+                                    "value": "helloWorld@company.io"
+                                }
+                            }
+                        }
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    },
+                    "400": {
+                        "expectations": {
+                            "httpStatus": 400
+                        }
+                    },
+                    "401": {
+                        "expectations": {
+                            "httpStatus": 401
+                        }
+                    },
+                    "default": {
+                        "expectations": {
+                            "httpStatus": "default"
+                        }
+                    }
+                }
+            }
+        },
+        "Version": {
+            "operationId": "Version",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/Version/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "Version",
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/version",
+                        "method": "GET"
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    },
+                    "default": {
+                        "expectations": {
+                            "httpStatus": "default"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "environments": {
+        "default": {
+            "variables": {
+                "ApiKeyAdmin": {
+                    "from": "environment",
+                    "name": "SCAN42C_SECURITY_APIKEYADMIN",
+                    "required": true
+                },
+                "ApiKeyUser": {
+                    "from": "environment",
+                    "name": "SCAN42C_SECURITY_APIKEYUSER",
+                    "required": false,
+                    "default": "secret_to_be_overridden"
+                },
+                "CookieAdmin": {
+                    "from": "environment",
+                    "name": "SCAN42C_SECURITY_COOKIEADMIN",
+                    "required": true
+                },
+                "CookieUser": {
+                    "from": "environment",
+                    "name": "SCAN42C_SECURITY_COOKIEUSER",
+                    "required": false,
+                    "default": "secret_to_be_overridden"
+                },
+                "host": {
+                    "from": "environment",
+                    "name": "SCAN42C_HOST",
+                    "required": false,
+                    "default": "http://localhost:4010"
+                }
+            }
+        }
     }
-  }
+}
