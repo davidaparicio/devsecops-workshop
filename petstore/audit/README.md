@@ -183,3 +183,21 @@ vacuum dashboard petstoreMinimal.json
 
 - Vaccum (Online)
     - https://pb33f.io/doctor/
+
+
+# Breaking changes 
+
+A tool developed by pb33f for detecting changes in your OpenAPI file.
+
+## Online 
+
+https://pb33f.io/openapi-changes/
+
+## CLI 
+
+```
+go install github.com/pb33f/openapi-changes@latest
+
+# Example to generate a html report
+openapi-changes html-report https://github.com/pb33f/openapi-changes/blob/main/sample-specs/petstorev3.json
+```
