@@ -1,7 +1,7 @@
 summary: La sécurité, par où commencer ? Install party
-id: sunnytech24
+id: devfest24
 categories: devsecops, security
-tags: sunnytech
+tags: devfest
 status: Published
 authors: David Aparicio
 Feedback Link: https://github.com/davidaparicio/devsecops-workshop/issues
@@ -13,9 +13,9 @@ Duration: 3
 
 Votre entreprise a connu une croissance inattendue, des carnets de commandes qui débordent, un tas d'idées nouvelles de projets, et avec la crise actuelle outre-atlantique touchant les GAFAM, la conjecture n'est pas favorable à recruter massivement.
 
-De plus, votre dernier produit de l'équipe a connu un succès fou, SunnyTechGPT. Tous les médias en parlent, les serveurs tiennent tant bien que mal à la charge, et après quelques analyses de logs, vous remarquez que certains petits malins réussissent à bénéficier de l'offre commerciale, sans débourser le moindre sou.
+De plus, votre dernier produit de l'équipe a connu un succès fou, DevFestGPT. Tous les médias en parlent, les serveurs tiennent tant bien que mal à la charge, et après quelques analyses de logs, vous remarquez que certains petits malins réussissent à bénéficier de l'offre commerciale, sans débourser le moindre sou.
 
-![SunnyTechGPT logo](assets/sunnytechgpt.jpg)
+![DevFestGPT logo](assets/devfestgpt.jpg)
 
 Avec l'euphorie des développeurs, et l'engouement des utilisateurs, vous avez mis en production de nouvelles fonctionnalités dans la précipitation, sans revue préalable, ni la réalisation de test d'intrusion.
 
@@ -36,7 +36,7 @@ Duration: 1
 
 Ingénieur passionné en Informatique, diplômé INSA Lyon 2014, après deux années passées à UNICAMP au Brésil, participe activement à la communauté, à travers des Meetups et des conférences. Sa devise: « Nul développeur n'est censé ignorer la sécurité ».
 
-J'ai rejoint [OVHcloud](https://www.ovhcloud.com/fr/) en juillet 2019 en tant que DataOps au sein de l’équipe GPIO-Datalake.
+J'ai rejoint [OVHcloud](https://www.ovhcloud.com/fr/) en juillet 2019 jusqu'en Juillet 2024. Je suis à la recherche de mon prochain challenge technique.
 
 * [Mon LinkedIn](https://fr.linkedin.com/in/davidaparicio1)
 * [Mon site web](https://davidaparicio.gitlab.io/)
@@ -212,27 +212,27 @@ Duration: 2
 
 ### Illustration avec GitHub Code Scanning
 
-En préparant cet atelier pour la conférence SunnyTech2024, mon collègue, Christopher Aparicio, a continué à contribuer pour SunnyTechGPT. En activant sur tous mes repositories Github, Dependabot & cie, à travers ce [menu](https://github.com/settings/security_analysis), automatiquement, Dependabot me remonte les failles de sécurité de notre code. La prevue en images (ou plutôt en ligne de commande, durant les fameux git pull/push) :
+En préparant cet atelier pour la conférence DevFest Nantes2024, mon collègue, Christopher Aparicio, a continué à contribuer pour DevFestGPT. En activant sur tous mes repositories Github, Dependabot & cie, à travers ce [menu](https://github.com/settings/security_analysis), automatiquement, Dependabot me remonte les failles de sécurité de notre code. La prevue en images (ou plutôt en ligne de commande, durant les fameux git pull/push) :
 
 git pull (Dependabot a ouvert automatique 3 PR pour fixer les failles, maintenant à moi de les tester)
 ``` Bash
-devsecops-workshop-sunnytechfr24 on main [⇡] took 32s
+devsecops-workshop on main [⇡] took 32s
 ❯ git pull
 remote: Enumerating objects: 23, done.
 remote: Counting objects: 100% (23/23), done.
 remote: Compressing objects: 100% (18/18), done.
 remote: Total 18 (delta 15), reused 0 (delta 0), pack-reused 0
 Unpacking objects: 100% (18/18), 4.12 KiB | 111.00 KiB/s, done.
-From github.com:davidaparicio/devsecops-workshop-sunnytechfr24
+From github.com:davidaparicio/devsecops-workshop
  * [new branch]      dependabot/go_modules/petstore/api/github.com/labstack/echo/v4-4.9.0 -> origin/dependabot/go_modules/petstore/api/github.com/labstack/echo/v4-4.9.0
  * [new branch]      dependabot/go_modules/petstore/api/golang.org/x/net-0.7.0 -> origin/dependabot/go_modules/petstore/api/golang.org/x/net-0.7.0
  * [new branch]      dependabot/go_modules/petstore/api/golang.org/x/text-0.3.8 -> origin/dependabot/go_modules/petstore/api/golang.org/x/text-0.3.8
 Already up to date.
 ```
 
-git push (GitHub me signale [4 vulnérabilités](https://github.com/davidaparicio/devsecops-workshop-sunnytechfr24/security/dependabot), dont 1 critique)
+git push (GitHub me signale [4 vulnérabilités](https://github.com/davidaparicio/devsecops-workshop/security/dependabot), dont 1 critique)
 ``` Bash
-devsecops-workshop-sunnytechfr24 on main [⇡] took 7s
+devsecops-workshop on main [⇡] took 7s
 ❯ git push
 Enumerating objects: 9, done.
 Counting objects: 100% (9/9), done.
@@ -242,10 +242,10 @@ Writing objects: 100% (6/6), 1023.91 KiB | 15.28 MiB/s, done.
 Total 6 (delta 2), reused 0 (delta 0), pack-reused 0
 remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
 remote:
-remote: GitHub found 4 vulnerabilities on davidaparicio/devsecops-workshop-sunnytechfr24's default branch (1 critical, 3 high). To find out more, visit:
-remote:      https://github.com/davidaparicio/devsecops-workshop-sunnytechfr24/security/dependabot
+remote: GitHub found 4 vulnerabilities on davidaparicio/devsecops-workshop's default branch (1 critical, 3 high). To find out more, visit:
+remote:      https://github.com/davidaparicio/devsecops-workshop/security/dependabot
 remote:
-To github.com:davidaparicio/devsecops-workshop-sunnytechfr24.git
+To github.com:davidaparicio/devsecops-workshop.git
    3040a1d..698757c  main -> main
 ```
 
@@ -335,7 +335,7 @@ Duration: 3
 Le podium des SAST est [Checkmarx](https://checkmarx.com/), [SonarQube](https://www.sonarsource.com/products/sonarqube/), [Veracode](https://www.veracode.com/), suivi de [OpenSCAP](https://www.open-scap.org/), [Insider CLI](https://github.com/insidersec/insider) (couvrant OWASP Top 10), [PMD - Don’t shoot the messenger](https://pmd.github.io/), [Mend Advise (ex-WhiteSource)](https://mend.io/), [Argon Supply Chain](https://www.argon.io/) qui a rejoint [Aqua](https://blog.aquasec.com/argon-supply-chain-security), [Brakeman](https://brakemanscanner.org/), [Codacy](https://www.codacy.com/), [Contrast Security](https://www.contrastsecurity.com/), [CyberRes](https://www.microfocus.com/en-us/cyberres), [Find Security Bugs](https://find-sec-bugs.github.io/) (Java), [Grammatech](https://www.grammatech.com/), [HCL AppScan](https://www.hcltechsw.com/appscan), [JIT.io](https://www.jit.io/), [Klocwork](https://www.perforce.com/products/klocwork), [LGTM.com](https://lgtm.com/) racheté par [Github](https://github.blog/2022-08-15-the-next-step-for-lgtm-com-github-code-scanning/), [Perforce SAST](https://www.perforce.com/blog/kw/what-is-sast), Redshift renommé récemment en [Software Secured](https://www.softwaresecured.com/) probablement pour un différent juridique avec AWS, [Snyk](https://snyk.io/), [SpectralOps](https://spectralops.io/), [Synopsys Coverity](https://www.synopsys.com/software-integrity/security-testing/static-analysis-sast.html), [slscan.io](https://slscan.io/), [42Crunch API SAST](https://42crunch.com/free-tools/).
 
 ![Gitlab - SAST](assets/gitlab_sast.jpg)
-Exemple: lorsqu'on crée un nouveau projet sur Gitlab. Ce dernier nous propose dès l'[initiation du projet](https://gitlab.com/projects/new#blank_project), d'activer le GitLab SAST.
+Exemple: lorsqu'on crée un nouveau projet sur Gitlab. Ce dernier nous propose dès l'[initiation du projet](https://gitlab.com/projects/new#blank_project), d'activer le GitLab SAST. Si vous utilisez des docker images ou workflows externes, aidez-vous de [R2DevOps](https://r2devops.io/) et [les images Chainguard (sans CVE)](https://images.chainguard.dev/directory/image/static/overview) pour garantir une pipeline de qualité (et sécurisée). Afin d'éviter que notre code ou nos secrets soient exfiltrés par la [CI/CD, comme l'illustre Yoan](https://youtu.be/NbQ_T0fd5p4).
 
 Pour compléter, nous vous recommandons de visiter le site de la [Fondation OWASP qui a un tableau (en anglais)](https://owasp.org/www-community/Vulnerability_Scanning_Tools) et [cette page](https://owasp.org/www-community/Source_Code_Analysis_Tools) sur ce sujet
 
@@ -443,7 +443,7 @@ Duration: 10
 
 ![NewsBlur - Logo](assets/newsblur.jpg)
 
-En effet, vous vous rappelez des conséquences de l'attaque contre fournisseur de données pour SunnyTechGPT: [NewsBlur](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/). Pour éviter la même mésaventure, vous prenez les devant. Tester votre déploiement, en vérifiant les Best Practices en Sécurité.
+En effet, vous vous rappelez des conséquences de l'attaque contre fournisseur de données pour DevFestGPT: [NewsBlur](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/). Pour éviter la même mésaventure, vous prenez les devant. Tester votre déploiement, en vérifiant les Best Practices en Sécurité.
 
 __Objectifs de cette étape__:
 * Codez deux petites fonctions de test qui valide (SUCCÈS) si elle n'arrive à se connecter à votre BDD sans identifiants, et ceux par défaut comme `admin:admin`
@@ -487,7 +487,7 @@ Duration: 15
 
 ### Démonstrations des fonctionnalités de 42Crunch
 
-Cette partie sera faite en session live coding, durant l'atelier SunnyTech2024.
+Cette partie sera faite en session live coding, durant l'atelier DevFest Nantes2024.
 
 ![Sécurité - Dans un projet IT informatique](assets/it_security.png)
 
@@ -864,7 +864,7 @@ Duration: 3
 ### Surveillance : Sécurité monitorée
 Le logiciel open source [Falco](https://falco.org/) permet de surveiller l’activité de Kubernetes et détecter des comportements anormaux ou malicieux. Nous vous recommandons de visionner la conférence de [Kris Nova](https://archive.fosdem.org/2020/schedule/event/kubernetes/) au FOSDEM 2020 [“ Fixing the Kubernetes clusterfuck - Understanding security from the kernel up”](https://youtu.be/6NhHnVYpOFw) (en anglais). Les Système de détection d’intrusion (IDS), sont aussi pratiques, les projets [CrowdSec](https://www.crowdsec.net/), [suricata](https://suricata.io/), [fail2ban](https://www.fail2ban.org/), [OSSEC](https://www.ossec.net/), [Wazuh](https://wazuh.com/), [Snort](https://www.snort.org/), [pfSense](https://www.pfsense.org/), [Tripwire Enterprise](https://www.tripwire.com/products/tripwire-enterprise), [Samhain](https://www.la-samhna.de/samhain/), [Security Onion](https://securityonionsolutions.com/) valent la peine d’être consultés.
 
-Pour l’ensemble de l’infrastructure, un système SIEM (Security information and event management) est indispensable. [Splunk](https://www.splunk.com/), [Elastic Security](https://www.elastic.co/security), [IBM QRadar](https://www.ibm.com/products/qradar-siem), [AlienVault USM](https://www.unifiedthreatworks.com/USM-Appliance) ou [SolarWinds Threat Monitor](https://www.solarwinds.com/security-event-manager/use-cases/threat-detection) sont dans ce domaine.
+Pour l’ensemble de l’infrastructure, un système SIEM (Security information and event management) est indispensable. [Splunk](https://www.splunk.com/), [Elastic Security](https://www.elastic.co/security), [IBM QRadar](https://www.ibm.com/products/qradar-siem), [AlienVault USM](https://www.unifiedthreatworks.com/USM-Appliance) ou [SolarWinds Threat Monitor](https://www.solarwinds.com/security-event-manager/use-cases/threat-detection) sont dans ce domaine. Enfin, toutes ces informations peuvent être centralisées avec un outil comme [Hackuity](https://www.hackuity.io/).
 
 Si vous devez vous connecter en SSH sur votre infrastructure, passez par une machine intermédiaire, dite de rebond, qui apporte la gestion d’utilisateurs/groupes, l’auditabilité ainsi que la traçabilité des actions. [OVHcloud](https://www.ovhcloud.com/fr/) a opensourcé leur projet de [bastion sur GitHub](https://github.com/ovh/the-bastion/)
 
@@ -913,7 +913,7 @@ Duration: 15
 
 ![NewsBlur - Logo](assets/newsblur.jpg)
 
-Vous vous souvenez à nouveau des conséquences de l'attaque contre fournisseur de données pour SunnyTechGPT: [NewsBlur](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/). Pour éviter une mésaventure, vous prenez les devant: Tester de manière fréquente vos procédures de snapshot backup/restore.
+Vous vous souvenez à nouveau des conséquences de l'attaque contre fournisseur de données pour DevFestGPT: [NewsBlur](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/). Pour éviter une mésaventure, vous prenez les devant: Tester de manière fréquente vos procédures de snapshot backup/restore.
 
 __Objectifs de cette étape__:
 * Lister ce qui est indispensable pour votre sauvegarde (état mais aussi fichiers de configuration/secrets chiffrés)
@@ -991,9 +991,9 @@ Pour éviter de tout installer à la main sur son cluster Kubernetes de PROD, l'
 ## Félicitations
 Duration: 2
 
-![Félicitations de la part de toute l'équipe](assets/sunnytech_team.jpg)
+![Félicitations de la part de toute l'équipe](assets/devfest_team.jpg)
 
-Votre CEO ainsi que votre CTO vous félicient pour ces actions préventives et actives pour renforcer les produits de l'entreprise, et surtout votre produit phare: **SunnyTechGPT**. Vous pouvez être fier.e pour ces exploits menés avec brio !
+Votre CEO ainsi que votre CTO vous félicient pour ces actions préventives et actives pour renforcer les produits de l'entreprise, et surtout votre produit phare: **DevFestGPT**. Vous pouvez être fier.e pour ces exploits menés avec brio !
 
 ![CommitStrip - ChatGPT](assets/chatgpt.jpg)
 
@@ -1035,21 +1035,21 @@ Duration: 3
 
 Merci pour votre participation **active** et agréable, sur cette très longue durée. Surtout qu'il est tard, vous avez bien mérité le déjeuner !
 
-Nous, Christopher et David Aparicio, nous profitons pour remercier infiniment les organisateurs et toute l'équipe de SunnyTech pour leur aide et leur confiance
+Nous, Christopher et David Aparicio, nous profitons pour remercier infiniment les organisateurs et toute l'équipe de DevFest Nantes pour leur aide et leur confiance
 
-Nous vous souhaitons un excellent SunnyTech 2024 !! ;-D
+Nous vous souhaitons un excellent DevFest Nantes 2024 !! ;-D
 
 ![Lien OpenFeedBack](assets/feedback.png)
 
-S'il vous plaît, laissez-nous votre note et vos commentaires sur [OpenFeedBack](https://openfeedback.io/sunnytech2024/2024-07-04/la-securite-par-ou-commencer-i)
+S'il vous plaît, laissez-nous votre note et vos commentaires sur [OpenFeedBack](https://devfest.gdgnantes.com/sessions/la_securite__par_ou_commencer___install_party___/)
 
 ## E1 - Utip
 Duration: 5
 
 ### Utip et Mongopay
-![SunnyTechGPT scale](assets/sunnytechgpt_curve.jpg)
+![DevFestGPT scale](assets/devfestgpt_curve.jpg)
 
-SunnyTechGPT connait une croissance incroyable, comme l'illustre le graphique: de nombreux articles en parlent, des directs sur les plateaux télévisés, et même l'[Italie](https://www.bbc.com/news/technology-65139406) menace de vous bloquer, pour des raisons de vie privée.
+DevFestGPT connait une croissance incroyable, comme l'illustre le graphique: de nombreux articles en parlent, des directs sur les plateaux télévisés, et même l'[Italie](https://www.bbc.com/news/technology-65139406) menace de vous bloquer, pour des raisons de vie privée.
 
 
 Mais votre CEO découvre cette [nouvelle](https://www.numerama.com/tech/1325518-utip-ferme-pourquoi-la-plateforme-francaise-de-financement-disparait-elle-si-abruptement.html) avec effroi : "uTip, la plateforme de financement participatif française (Cocorico) concurrente de Tipeee, vient fermer. L’entreprise a été placée en liquidation judiciaire le 23 mars 2023, et son activité s'est arrêtée le 4 avril 2023" ([Source](https://www.numerama.com/tech/1325518-utip-ferme-pourquoi-la-plateforme-francaise-de-financement-disparait-elle-si-abruptement.html)). uTip ferme à cause d'un intermédiaire financier, Mangopay, qui a décidé de mettre fin à leur contrat. Vous avez pour objectif, de le rasurer face à cette triste annonce, ébranlant toute la [French Tech](https://lafrenchtech.com/fr/).
@@ -1108,8 +1108,8 @@ sed -i '' "${DELETE_LINE?}d" ~/.ssh/known_hosts -->
 ## E3 - VM2
 Duration: 5
 
-### À la veille de la plénière de SunnyTech2024...
-![SunnyTech2024](assets/sunnytech.jpg)
+### À la veille de la plénière de DevFest Nantes2024...
+![DevFest Nantes2024](assets/devfest.jpg)
 
 Bientôt le week-end prolongé.. Mais le vendredi matin 7 Avril 2023, la lecture de ce [tweet](https://twitter.com/MalwareJake/status/1644399193987981313) et de la [nouvelle](https://twitter.com/MalwareJake/status/1644399193987981313) vous glace le sang...
 
@@ -1121,7 +1121,7 @@ Happy Friday to everyone - enjoy your weekend if you can,
 I suspect this will be big next week...
 ```
 
-Votre CTO ainsi que votre CEO s'inquiètent.. À la veille du [SunnyTech2024](https://www.sunnytech.io/) et de sa grande plénière, où votre startup fera son show devant 2950 participants durant une session live coding: Est-ce que votre startup est-elle vulnérable à cette faille majeure, pouvant mettre en péril cette démo importante, devant des passionnés de la Tech ainsi que la presse ?
+Votre CTO ainsi que votre CEO s'inquiètent.. À la veille du [DevFest Nantes2024](https://devfest.gdgnantes.com/) et de sa grande plénière, où votre startup fera son show devant 2950 participants durant une session live coding: Est-ce que votre startup est-elle vulnérable à cette faille majeure, pouvant mettre en péril cette démo importante, devant des passionnés de la Tech ainsi que la presse ?
 
 __Objectifs de cette étape__:
 * Analyser le language et la librairie impactée (trop facile)
@@ -1245,5 +1245,8 @@ Pour nos futurs ateliers
 * [DDOS detection](https://vincent.bernat.ch/fr/blog/2023-akvorado-ddos-flowspec)
 * [NetworkChuck - ZPhisher/blackeye: Phishing attacks are SCARY easy to do!! (let me show you!)](https://youtu.be/u9dBGWVwMMA?)
 * [Chaîne YouTube: Secureaks - Pentest et cybersécurité](https://www.youtube.com/@Secureaks)
+* [SecureCodeWarrior, le CodingGame de la sécurité](https://www.securecodewarrior.com/)
+* [Worst place for secrets](https://cybenari.com/2024/08/whats-the-worst-place-to-leave-your-secrets/)
+* [Beware with Google links (Fake Keepass)](https://arstechnica.com/security/2023/10/google-hosted-malvertising-leads-to-fake-keepass-site-that-looks-genuine/)
 
 <!-- ------------------------ -->

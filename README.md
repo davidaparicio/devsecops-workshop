@@ -2,7 +2,7 @@
 
 ## Lien de l'atelier
 
-https://davidaparicio.gitlab.io/fr/codelabs/sunnytech24/
+https://davidaparicio.gitlab.io/fr/codelabs/devfest24/
 
 ## Lien vers le projet Go
 
