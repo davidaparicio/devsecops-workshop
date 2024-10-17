@@ -134,7 +134,7 @@ for i in {1..11}; do
         "user":"admin@42crunch.com",
         "password":"HelloWorld"
     }'
-    sleep 0.5
+    sleep 0.3
 done
 ```
 
