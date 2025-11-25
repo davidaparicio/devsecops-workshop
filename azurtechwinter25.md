@@ -1,21 +1,21 @@
-summary: La sécurité, par où commencer ? Install party
-id: devfest24
+summary: Sécurisez vos applications avec DevSecOps
+id: azurtechwinter25
 categories: devsecops, security
-tags: devfest
+tags: azurtechwinter
 status: Published
 authors: David Aparicio
 Feedback Link: https://github.com/davidaparicio/devsecops-workshop/issues
 
-# La sécurité, par où commencer ? Install party 🎉
+# Sécurisez vos applications avec DevSecOps 🎉
 <!-- ------------------------ -->
 ## Présentation
 Duration: 3
 
 Votre entreprise a connu une croissance inattendue, des carnets de commandes qui débordent, un tas d'idées nouvelles de projets, et avec la crise actuelle outre-atlantique touchant les GAFAM, la conjecture n'est pas favorable à recruter massivement.
 
-De plus, votre dernier produit de l'équipe a connu un succès fou, DevFestGPT. Tous les médias en parlent, les serveurs tiennent tant bien que mal à la charge, et après quelques analyses de logs, vous remarquez que certains petits malins réussissent à bénéficier de l'offre commerciale, sans débourser le moindre sou.
+De plus, votre dernier produit de l'équipe a connu un succès fou, AzurTechWinterGPT. Tous les médias en parlent, les serveurs tiennent tant bien que mal à la charge, et après quelques analyses de logs, vous remarquez que certains petits malins réussissent à bénéficier de l'offre commerciale, sans débourser le moindre sou.
 
-![DevFestGPT logo](assets/devfestgpt.jpg)
+![AzurTechWinterGPT logo](assets/azurtechwintergpt.jpg)
 
 Avec l'euphorie des développeurs, et l'engouement des utilisateurs, vous avez mis en production de nouvelles fonctionnalités dans la précipitation, sans revue préalable, ni la réalisation de test d'intrusion.
 
@@ -36,7 +36,7 @@ Duration: 1
 
 Ingénieur passionné en Informatique, diplômé INSA Lyon 2014, après deux années passées à UNICAMP au Brésil, participe activement à la communauté, à travers des Meetups et des conférences. Sa devise: « Nul développeur n'est censé ignorer la sécurité ».
 
-J'ai rejoint [OVHcloud](https://www.ovhcloud.com/fr/) en juillet 2019 jusqu'en Juillet 2024. Je suis à la recherche de mon prochain challenge technique.
+J'avais rejoint [OVHcloud](https://www.ovhcloud.com/fr/) pendant 5 ans, puis 1 an dans une startup GreenIT appelé [Sopht](https://sopht.com/). Et actuellement, je travaille chez [Agicap](https://agicap.com) en tant que SRE.
 
 * [Mon LinkedIn](https://fr.linkedin.com/in/davidaparicio1)
 * [Mon site web](https://davidaparicio.gitlab.io/)
@@ -212,7 +212,7 @@ Duration: 2
 
 ### Illustration avec GitHub Code Scanning
 
-En préparant cet atelier pour la conférence DevFest Nantes2024, mon collègue, Christopher Aparicio, a continué à contribuer pour DevFestGPT. En activant sur tous mes repositories Github, Dependabot & cie, à travers ce [menu](https://github.com/settings/security_analysis), automatiquement, Dependabot me remonte les failles de sécurité de notre code. La prevue en images (ou plutôt en ligne de commande, durant les fameux git pull/push) :
+En préparant cet atelier pour la conférence Azur Tech Winter 2025, mon collègue, Christopher Aparicio, a continué à contribuer pour AzurTechWinterGPT. En activant sur tous mes repositories Github, Dependabot & cie, à travers ce [menu](https://github.com/settings/security_analysis), automatiquement, Dependabot me remonte les failles de sécurité de notre code. La prevue en images (ou plutôt en ligne de commande, durant les fameux git pull/push) :
 
 git pull (Dependabot a ouvert automatique 3 PR pour fixer les failles, maintenant à moi de les tester)
 ``` Bash
@@ -443,7 +443,7 @@ Duration: 10
 
 ![NewsBlur - Logo](assets/newsblur.jpg)
 
-En effet, vous vous rappelez des conséquences de l'attaque contre fournisseur de données pour DevFestGPT: [NewsBlur](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/). Pour éviter la même mésaventure, vous prenez les devant. Tester votre déploiement, en vérifiant les Best Practices en Sécurité.
+En effet, vous vous rappelez des conséquences de l'attaque contre fournisseur de données pour AzurTechWinterGPT: [NewsBlur](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/). Pour éviter la même mésaventure, vous prenez les devant. Tester votre déploiement, en vérifiant les Best Practices en Sécurité.
 
 __Objectifs de cette étape__:
 * Codez deux petites fonctions de test qui valide (SUCCÈS) si elle n'arrive à se connecter à votre BDD sans identifiants, et ceux par défaut comme `admin:admin`
@@ -487,7 +487,7 @@ Duration: 15
 
 ### Démonstrations des fonctionnalités de 42Crunch
 
-Cette partie sera faite en session live coding, durant l'atelier DevFest Nantes2024.
+Cette partie sera faite en session live coding, durant l'atelier Azur Tech Winter 2025.
 
 ![Sécurité - Dans un projet IT informatique](assets/it_security.png)
 
@@ -913,7 +913,7 @@ Duration: 15
 
 ![NewsBlur - Logo](assets/newsblur.jpg)
 
-Vous vous souvenez à nouveau des conséquences de l'attaque contre fournisseur de données pour DevFestGPT: [NewsBlur](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/). Pour éviter une mésaventure, vous prenez les devant: Tester de manière fréquente vos procédures de snapshot backup/restore.
+Vous vous souvenez à nouveau des conséquences de l'attaque contre fournisseur de données pour AzurTechWinterGPT: [NewsBlur](https://blog.newsblur.com/2021/06/28/story-of-a-hacking/). Pour éviter une mésaventure, vous prenez les devant: Tester de manière fréquente vos procédures de snapshot backup/restore.
 
 __Objectifs de cette étape__:
 * Lister ce qui est indispensable pour votre sauvegarde (état mais aussi fichiers de configuration/secrets chiffrés)
@@ -991,9 +991,9 @@ Pour éviter de tout installer à la main sur son cluster Kubernetes de PROD, l'
 ## Félicitations
 Duration: 2
 
-![Félicitations de la part de toute l'équipe](assets/devfest_team.jpg)
+![Félicitations de la part de toute l'équipe](assets/azurtechwinter_team.jpg)
 
-Votre CEO ainsi que votre CTO vous félicient pour ces actions préventives et actives pour renforcer les produits de l'entreprise, et surtout votre produit phare: **DevFestGPT**. Vous pouvez être fier.e pour ces exploits menés avec brio !
+Votre CEO ainsi que votre CTO vous félicient pour ces actions préventives et actives pour renforcer les produits de l'entreprise, et surtout votre produit phare: **AzurTechWinterGPT**. Vous pouvez être fier.e pour ces exploits menés avec brio !
 
 ![CommitStrip - ChatGPT](assets/chatgpt.jpg)
 
@@ -1035,21 +1035,21 @@ Duration: 3
 
 Merci pour votre participation **active** et agréable, sur cette très longue durée. Surtout qu'il est tard, vous avez bien mérité le déjeuner !
 
-Nous, Christopher et David Aparicio, nous profitons pour remercier infiniment les organisateurs et toute l'équipe de DevFest Nantes pour leur aide et leur confiance
+Nous, Christopher et David Aparicio, nous profitons pour remercier infiniment les organisateurs et toute l'équipe de AzurTechWinter pour leur aide et leur confiance
 
-Nous vous souhaitons un excellent DevFest Nantes 2024 !! ;-D
+Nous vous souhaitons un excellent Azur Tech Winter 2025 !! ;-D
 
 ![Lien OpenFeedBack](assets/feedback.png)
 
-S'il vous plaît, laissez-nous votre note et vos commentaires sur [OpenFeedBack](https://devfest.gdgnantes.com/sessions/la_securite__par_ou_commencer___install_party___/)
+S'il vous plaît, laissez-nous votre note et vos commentaires sur [OpenFeedBack](https://openfeedback.io/b5avtqodDPN0y3zzrnDC/2025-12-02/JDl5My86SAGuYoeoEzy4)
 
 ## E1 - Utip
 Duration: 5
 
 ### Utip et Mongopay
-![DevFestGPT scale](assets/devfestgpt_curve.jpg)
+![AzurTechWinterGPT scale](assets/azurtechwintergpt_curve.jpg)
 
-DevFestGPT connait une croissance incroyable, comme l'illustre le graphique: de nombreux articles en parlent, des directs sur les plateaux télévisés, et même l'[Italie](https://www.bbc.com/news/technology-65139406) menace de vous bloquer, pour des raisons de vie privée.
+AzurTechWinterGPT connait une croissance incroyable, comme l'illustre le graphique: de nombreux articles en parlent, des directs sur les plateaux télévisés, et même l'[Italie](https://www.bbc.com/news/technology-65139406) menace de vous bloquer, pour des raisons de vie privée.
 
 
 Mais votre CEO découvre cette [nouvelle](https://www.numerama.com/tech/1325518-utip-ferme-pourquoi-la-plateforme-francaise-de-financement-disparait-elle-si-abruptement.html) avec effroi : "uTip, la plateforme de financement participatif française (Cocorico) concurrente de Tipeee, vient fermer. L’entreprise a été placée en liquidation judiciaire le 23 mars 2023, et son activité s'est arrêtée le 4 avril 2023" ([Source](https://www.numerama.com/tech/1325518-utip-ferme-pourquoi-la-plateforme-francaise-de-financement-disparait-elle-si-abruptement.html)). uTip ferme à cause d'un intermédiaire financier, Mangopay, qui a décidé de mettre fin à leur contrat. Vous avez pour objectif, de le rasurer face à cette triste annonce, ébranlant toute la [French Tech](https://lafrenchtech.com/fr/).
@@ -1108,8 +1108,8 @@ sed -i '' "${DELETE_LINE?}d" ~/.ssh/known_hosts -->
 ## E3 - VM2
 Duration: 5
 
-### À la veille de la plénière de DevFest Nantes2024...
-![DevFest Nantes2024](assets/devfest.jpg)
+### À la veille de la plénière de Azur Tech Winter 2025...
+![Azur Tech Winter 2025](assets/azurtechwinter.jpg)
 
 Bientôt le week-end prolongé.. Mais le vendredi matin 7 Avril 2023, la lecture de ce [tweet](https://twitter.com/MalwareJake/status/1644399193987981313) et de la [nouvelle](https://twitter.com/MalwareJake/status/1644399193987981313) vous glace le sang...
 
@@ -1121,7 +1121,7 @@ Happy Friday to everyone - enjoy your weekend if you can,
 I suspect this will be big next week...
 ```
 
-Votre CTO ainsi que votre CEO s'inquiètent.. À la veille du [DevFest Nantes2024](https://devfest.gdgnantes.com/) et de sa grande plénière, où votre startup fera son show devant 2950 participants durant une session live coding: Est-ce que votre startup est-elle vulnérable à cette faille majeure, pouvant mettre en péril cette démo importante, devant des passionnés de la Tech ainsi que la presse ?
+Votre CTO ainsi que votre CEO s'inquiètent.. À la veille du [Azur Tech Winter 2025](https://www.telecom-valley.fr/azurtechwinter/) et de sa grande plénière, où votre startup fera son show devant 2950 participants durant une session live coding: Est-ce que votre startup est-elle vulnérable à cette faille majeure, pouvant mettre en péril cette démo importante, devant des passionnés de la Tech ainsi que la presse ?
 
 __Objectifs de cette étape__:
 * Analyser le language et la librairie impactée (trop facile)
