@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
-  <title>La sécurité, par où commencer ? Install party 🎉</title>
+  <title>Sécurisez vos applications avec DevSecOps 🎉</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
@@ -23,15 +23,15 @@
   <google-codelab-analytics gaid="UA-49880327-14" ga4id=""></google-codelab-analytics>
   <google-codelab codelab-gaid=""
                   codelab-ga4id=""
-                  id="devfest24"
-                  title="La sécurité, par où commencer ? Install party 🎉"
+                  id="azurtechwinter25"
+                  title="Sécurisez vos applications avec DevSecOps 🎉"
                   environment="web"
                   feedback-link="https://github.com/davidaparicio/devsecops-workshop/issues">
     
       <google-codelab-step label="Présentation" duration="3">
         <p>Votre entreprise a connu une croissance inattendue, des carnets de commandes qui débordent, un tas d&#39;idées nouvelles de projets, et avec la crise actuelle outre-atlantique touchant les GAFAM, la conjecture n&#39;est pas favorable à recruter massivement.</p>
-<p>De plus, votre dernier produit de l&#39;équipe a connu un succès fou, DevFestGPT. Tous les médias en parlent, les serveurs tiennent tant bien que mal à la charge, et après quelques analyses de logs, vous remarquez que certains petits malins réussissent à bénéficier de l&#39;offre commerciale, sans débourser le moindre sou.</p>
-<p class="image-container"><img alt="DevFestGPT logo" src="img/e8b9d5a77788470d.jpg"></p>
+<p>De plus, votre dernier produit de l&#39;équipe a connu un succès fou, AzurTechWinterGPT. Tous les médias en parlent, les serveurs tiennent tant bien que mal à la charge, et après quelques analyses de logs, vous remarquez que certains petits malins réussissent à bénéficier de l&#39;offre commerciale, sans débourser le moindre sou.</p>
+<p class="image-container"><img alt="AzurTechWinterGPT logo" src="img/239b90a0bb783204.jpg"></p>
 <p>Avec l&#39;euphorie des développeurs, et l&#39;engouement des utilisateurs, vous avez mis en production de nouvelles fonctionnalités dans la précipitation, sans revue préalable, ni la réalisation de test d&#39;intrusion.</p>
 <p>Vous ne voyez plus qu&#39;une solution, face à la charge de travail déjà colossale dans l&#39;équipe, l&#39;application immédiate de la méthologie DevSecOps: pour sécuriser votre outil et maintenir la position de l&#39;entreprise sur son piédestal. Car vous devez éviter, à tout prix pour votre image, la fuite de toutes vos données clientes, ainsi que vos secrets de fabrication, comme ce fût le cas pour <a href="https://arstechnica.com/information-technology/2021/10/twitch-admits-to-major-leak-exposing-source-code-creator-earnings/" target="_blank">Twitch, le 6 Octobre 2021</a>.</p>
 <p class="image-container"><img alt="Twitter Twitch" src="img/ffedf5e1e4d167c1.jpg"></p>
@@ -44,7 +44,7 @@
       <google-codelab-step label="Qui sommes-nous ?" duration="1">
         <h2 is-upgraded>David Aparicio</h2>
 <p>Ingénieur passionné en Informatique, diplômé INSA Lyon 2014, après deux années passées à UNICAMP au Brésil, participe activement à la communauté, à travers des Meetups et des conférences. Sa devise: « Nul développeur n&#39;est censé ignorer la sécurité ».</p>
-<p>J&#39;ai rejoint <a href="https://www.ovhcloud.com/fr/" target="_blank">OVHcloud</a> en juillet 2019 jusqu&#39;en Juillet 2024. Je suis à la recherche de mon prochain challenge technique.</p>
+<p>J&#39;avais rejoint <a href="https://www.ovhcloud.com/fr/" target="_blank">OVHcloud</a> pendant 5 ans, puis 1 an dans une startup GreenIT appelé <a href="https://sopht.com/" target="_blank">Sopht</a>. Et actuellement, je travaille chez <a href="https://agicap.com" target="_blank">Agicap</a> en tant que SRE.</p>
 <ul>
 <li><a href="https://fr.linkedin.com/in/davidaparicio1" target="_blank">Mon LinkedIn</a></li>
 <li><a href="https://davidaparicio.gitlab.io/" target="_blank">Mon site web</a></li>
@@ -180,7 +180,7 @@
     
       <google-codelab-step label="PR Aware" duration="2">
         <h2 is-upgraded>Illustration avec GitHub Code Scanning</h2>
-<p>En préparant cet atelier pour la conférence DevFest Nantes2024, mon collègue, Christopher Aparicio, a continué à contribuer pour DevFestGPT. En activant sur tous mes repositories Github, Dependabot &amp; cie, à travers ce <a href="https://github.com/settings/security_analysis" target="_blank">menu</a>, automatiquement, Dependabot me remonte les failles de sécurité de notre code. La prevue en images (ou plutôt en ligne de commande, durant les fameux git pull/push) :</p>
+<p>En préparant cet atelier pour la conférence Azur Tech Winter 2025, mon collègue, Christopher Aparicio, a continué à contribuer pour AzurTechWinterGPT. En activant sur tous mes repositories Github, Dependabot &amp; cie, à travers ce <a href="https://github.com/settings/security_analysis" target="_blank">menu</a>, automatiquement, Dependabot me remonte les failles de sécurité de notre code. La prevue en images (ou plutôt en ligne de commande, durant les fameux git pull/push) :</p>
 <p>git pull (Dependabot a ouvert automatique 3 PR pour fixer les failles, maintenant à moi de les tester)</p>
 <pre><code language="language-Bash" class="language-Bash">devsecops-workshop on main [⇡] took 32s
 ❯ git pull
@@ -384,7 +384,7 @@ jobs:
       <google-codelab-step label="Ex: Test E2E" duration="10">
         <h2 is-upgraded>Compilation : Tests basiques de sécurité des applications (de bout en bout)</h2>
 <p class="image-container"><img alt="NewsBlur - Logo" src="img/13781bbbb2005845.jpg"></p>
-<p>En effet, vous vous rappelez des conséquences de l&#39;attaque contre fournisseur de données pour DevFestGPT: <a href="https://blog.newsblur.com/2021/06/28/story-of-a-hacking/" target="_blank">NewsBlur</a>. Pour éviter la même mésaventure, vous prenez les devant. Tester votre déploiement, en vérifiant les Best Practices en Sécurité.</p>
+<p>En effet, vous vous rappelez des conséquences de l&#39;attaque contre fournisseur de données pour AzurTechWinterGPT: <a href="https://blog.newsblur.com/2021/06/28/story-of-a-hacking/" target="_blank">NewsBlur</a>. Pour éviter la même mésaventure, vous prenez les devant. Tester votre déploiement, en vérifiant les Best Practices en Sécurité.</p>
 <p><strong>Objectifs de cette étape</strong>:</p>
 <ul>
 <li>Codez deux petites fonctions de test qui valide (SUCCÈS) si elle n&#39;arrive à se connecter à votre BDD sans identifiants, et ceux par défaut comme <code>admin:admin</code></li>
@@ -418,7 +418,7 @@ jobs:
     
       <google-codelab-step label="Ex: Scan d&#39;API" duration="15">
         <h2 is-upgraded>Démonstrations des fonctionnalités de 42Crunch</h2>
-<p>Cette partie sera faite en session live coding, durant l&#39;atelier DevFest Nantes2024.</p>
+<p>Cette partie sera faite en session live coding, durant l&#39;atelier Azur Tech Winter 2025.</p>
 <p class="image-container"><img alt="Sécurité - Dans un projet IT informatique" src="img/39d2c76fe90908c8.png"></p>
 <p>Vulnerable REST API with OWASP top 10 vulnerabilities for security testing</p>
 <p>Vous pouvez également, à la fin de l&#39;atelier, jouer avec ce repo GitHub <a href="https://github.com/erev0s/VAmPI" target="_blank">VAmPI</a></p>
@@ -799,7 +799,7 @@ spec:
       <google-codelab-step label="Ex: Crash &amp; Burn" duration="15">
         <h2 is-upgraded>Gagner en confiance en ses sauvegardes</h2>
 <p class="image-container"><img alt="NewsBlur - Logo" src="img/13781bbbb2005845.jpg"></p>
-<p>Vous vous souvenez à nouveau des conséquences de l&#39;attaque contre fournisseur de données pour DevFestGPT: <a href="https://blog.newsblur.com/2021/06/28/story-of-a-hacking/" target="_blank">NewsBlur</a>. Pour éviter une mésaventure, vous prenez les devant: Tester de manière fréquente vos procédures de snapshot backup/restore.</p>
+<p>Vous vous souvenez à nouveau des conséquences de l&#39;attaque contre fournisseur de données pour AzurTechWinterGPT: <a href="https://blog.newsblur.com/2021/06/28/story-of-a-hacking/" target="_blank">NewsBlur</a>. Pour éviter une mésaventure, vous prenez les devant: Tester de manière fréquente vos procédures de snapshot backup/restore.</p>
 <p><strong>Objectifs de cette étape</strong>:</p>
 <ul>
 <li>Lister ce qui est indispensable pour votre sauvegarde (état mais aussi fichiers de configuration/secrets chiffrés)</li>
@@ -867,8 +867,8 @@ spec:
       </google-codelab-step>
     
       <google-codelab-step label="Félicitations" duration="2">
-        <p class="image-container"><img alt="Félicitations de la part de toute l&amp;rsquo;équipe" src="img/db7e97839a962016.jpg"></p>
-<p>Votre CEO ainsi que votre CTO vous félicient pour ces actions préventives et actives pour renforcer les produits de l&#39;entreprise, et surtout votre produit phare: <strong>DevFestGPT</strong>. Vous pouvez être fier.e pour ces exploits menés avec brio !</p>
+        <p class="image-container"><img alt="Félicitations de la part de toute l&amp;rsquo;équipe" src="img/29b79ff8b6ff09b2.jpg"></p>
+<p>Votre CEO ainsi que votre CTO vous félicient pour ces actions préventives et actives pour renforcer les produits de l&#39;entreprise, et surtout votre produit phare: <strong>AzurTechWinterGPT</strong>. Vous pouvez être fier.e pour ces exploits menés avec brio !</p>
 <p class="image-container"><img alt="CommitStrip - ChatGPT" src="img/a0a34cec873e080b.jpg"></p>
 <p><a href="https://www.commitstrip.com/fr/2022/12/09/a-whole-new-world/?setLocale=1" target="_blank">Source de la BD, CommitStrip - lien direct</a></p>
 
@@ -904,18 +904,18 @@ spec:
     
       <google-codelab-step label="Feedback" duration="3">
         <p>Merci pour votre participation <strong>active</strong> et agréable, sur cette très longue durée. Surtout qu&#39;il est tard, vous avez bien mérité le déjeuner !</p>
-<p>Nous, Christopher et David Aparicio, nous profitons pour remercier infiniment les organisateurs et toute l&#39;équipe de DevFest Nantes pour leur aide et leur confiance</p>
-<p>Nous vous souhaitons un excellent DevFest Nantes 2024 !! ;-D</p>
-<p class="image-container"><img alt="Lien OpenFeedBack" src="img/e7f8264419f70279.png"></p>
-<p>S&#39;il vous plaît, laissez-nous votre note et vos commentaires sur <a href="https://devfest.gdgnantes.com/sessions/la_securite__par_ou_commencer___install_party___/" target="_blank">OpenFeedBack</a></p>
+<p>Nous, Christopher et David Aparicio, nous profitons pour remercier infiniment les organisateurs et toute l&#39;équipe de AzurTechWinter pour leur aide et leur confiance</p>
+<p>Nous vous souhaitons un excellent Azur Tech Winter 2025 !! ;-D</p>
+<p class="image-container"><img alt="Lien OpenFeedBack" src="img/cf97e53437d31e5d.png"></p>
+<p>S&#39;il vous plaît, laissez-nous votre note et vos commentaires sur <a href="https://openfeedback.io/b5avtqodDPN0y3zzrnDC/2025-12-02/JDl5My86SAGuYoeoEzy4" target="_blank">OpenFeedBack</a></p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="E1 - Utip" duration="5">
         <h2 is-upgraded>Utip et Mongopay</h2>
-<p class="image-container"><img alt="DevFestGPT scale" src="img/a08ad83be9df07fb.jpg"></p>
-<p>DevFestGPT connait une croissance incroyable, comme l&#39;illustre le graphique: de nombreux articles en parlent, des directs sur les plateaux télévisés, et même l&#39;<a href="https://www.bbc.com/news/technology-65139406" target="_blank">Italie</a> menace de vous bloquer, pour des raisons de vie privée.</p>
+<p class="image-container"><img alt="AzurTechWinterGPT scale" src="img/774ff22897317bf0.jpg"></p>
+<p>AzurTechWinterGPT connait une croissance incroyable, comme l&#39;illustre le graphique: de nombreux articles en parlent, des directs sur les plateaux télévisés, et même l&#39;<a href="https://www.bbc.com/news/technology-65139406" target="_blank">Italie</a> menace de vous bloquer, pour des raisons de vie privée.</p>
 <p>Mais votre CEO découvre cette <a href="https://www.numerama.com/tech/1325518-utip-ferme-pourquoi-la-plateforme-francaise-de-financement-disparait-elle-si-abruptement.html" target="_blank">nouvelle</a> avec effroi : &#34;uTip, la plateforme de financement participatif française (Cocorico) concurrente de Tipeee, vient fermer. L&#39;entreprise a été placée en liquidation judiciaire le 23 mars 2023, et son activité s&#39;est arrêtée le 4 avril 2023&#34; (<a href="https://www.numerama.com/tech/1325518-utip-ferme-pourquoi-la-plateforme-francaise-de-financement-disparait-elle-si-abruptement.html" target="_blank">Source</a>). uTip ferme à cause d&#39;un intermédiaire financier, Mangopay, qui a décidé de mettre fin à leur contrat. Vous avez pour objectif, de le rasurer face à cette triste annonce, ébranlant toute la <a href="https://lafrenchtech.com/fr/" target="_blank">French Tech</a>.</p>
 <p><strong>Objectifs de cette étape</strong>:</p>
 <ul>
@@ -965,8 +965,8 @@ and the repository exists.
       </google-codelab-step>
     
       <google-codelab-step label="E3 - VM2" duration="5">
-        <h2 is-upgraded>À la veille de la plénière de DevFest Nantes2024...</h2>
-<p class="image-container"><img alt="DevFest Nantes2024" src="img/1deda1e6543d8715.jpg"></p>
+        <h2 is-upgraded>À la veille de la plénière de Azur Tech Winter 2025...</h2>
+<p class="image-container"><img alt="Azur Tech Winter 2025" src="img/fd269b44fb6ceed4.jpg"></p>
 <p>Bientôt le week-end prolongé.. Mais le vendredi matin 7 Avril 2023, la lecture de ce <a href="https://twitter.com/MalwareJake/status/1644399193987981313" target="_blank">tweet</a> et de la <a href="https://twitter.com/MalwareJake/status/1644399193987981313" target="_blank">nouvelle</a> vous glace le sang...</p>
 <pre><code language="language-Bash" class="language-Bash">FYSA, there&#39;s a trivially exploitable CVSS 10.0 vuln in a VERY popular JS library
  resulting in arbitrary command execution that has POCs in the wild.
@@ -974,7 +974,7 @@ and the repository exists.
 Happy Friday to everyone - enjoy your weekend if you can,
 I suspect this will be big next week...
 </code></pre>
-<p>Votre CTO ainsi que votre CEO s&#39;inquiètent.. À la veille du <a href="https://devfest.gdgnantes.com/" target="_blank">DevFest Nantes2024</a> et de sa grande plénière, où votre startup fera son show devant 2950 participants durant une session live coding: Est-ce que votre startup est-elle vulnérable à cette faille majeure, pouvant mettre en péril cette démo importante, devant des passionnés de la Tech ainsi que la presse ?</p>
+<p>Votre CTO ainsi que votre CEO s&#39;inquiètent.. À la veille du <a href="https://www.telecom-valley.fr/azurtechwinter/" target="_blank">Azur Tech Winter 2025</a> et de sa grande plénière, où votre startup fera son show devant 2950 participants durant une session live coding: Est-ce que votre startup est-elle vulnérable à cette faille majeure, pouvant mettre en péril cette démo importante, devant des passionnés de la Tech ainsi que la presse ?</p>
 <p><strong>Objectifs de cette étape</strong>:</p>
 <ul>
 <li>Analyser le language et la librairie impactée (trop facile)</li>
